@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0B1120"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="#111827" stroke="#334155"/>
+  <rect x="96" y="100" width="260" height="22" rx="11" fill="#22D3EE"/>
+  <rect x="96" y="146" width="220" height="12" rx="6" fill="#64748B"/>
+  <rect x="96" y="190" width="1008" height="80" rx="14" fill="#1F2937"/>
+  <rect x="96" y="292" width="486" height="222" rx="14" fill="#1F2937"/>
+  <rect x="618" y="292" width="486" height="222" rx="14" fill="#1F2937"/>
+  <path d="M160 230H380L430 180H640" stroke="#67E8F9" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="640" cy="180" r="9" fill="#A5F3FC"/>
+  <text x="96" y="544" fill="#E2E8F0" font-family="Arial" font-size="38" font-weight="700">ShipFast API Console</text>
+</svg>

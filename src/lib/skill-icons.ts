@@ -1,0 +1,33 @@
+import {
+  SiReact,
+  SiNextdotjs,
+  SiJavascript,
+  SiPython,
+  SiDjango,
+  SiNodedotjs,
+  SiDotnet,
+  SiPostgresql,
+  SiMongodb,
+  SiDocker,
+  SiTypescript,
+  SiGit,
+  SiExpress,
+  SiTailwindcss,
+} from "react-icons/si";
+
+export const skillIcons: Record<string, React.ComponentType<{ size?: number }>> = {
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  Python: SiPython,
+  Django: SiDjango,
+  "Node.js": SiNodedotjs,
+  Express: SiExpress,
+  ".NET": SiDotnet,
+  PostgreSQL: SiPostgresql,
+  MongoDB: SiMongodb,
+  Docker: SiDocker,
+  Git: SiGit,
+  "Tailwind CSS": SiTailwindcss,
+};
