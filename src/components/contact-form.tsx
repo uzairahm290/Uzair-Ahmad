@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { MagneticButton } from "@/components/magnetic-button";
 
 type SubmitState = "idle" | "loading" | "success" | "error";
 
@@ -56,7 +57,7 @@ export function ContactForm() {
             name="name"
             required
             minLength={2}
-            className="rounded-xl border border-slate-300 bg-white/50 px-4 py-3 text-slate-900 outline-none ring-emerald-500/40 transition placeholder:text-slate-400 hover:bg-slate-50 focus:ring-2 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:bg-slate-800/80"
+            className="rounded-xl border border-slate-300 bg-white/50 px-4 py-3 text-slate-900 outline-none ring-blue-500/40 transition placeholder:text-slate-400 hover:bg-slate-50 focus:ring-2 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:bg-slate-800/80"
             placeholder="Your name"
           />
         </label>
@@ -66,7 +67,7 @@ export function ContactForm() {
             type="email"
             name="email"
             required
-            className="rounded-xl border border-slate-300 bg-white/50 px-4 py-3 text-slate-900 outline-none ring-emerald-500/40 transition placeholder:text-slate-400 hover:bg-slate-50 focus:ring-2 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:bg-slate-800/80"
+            className="rounded-xl border border-slate-300 bg-white/50 px-4 py-3 text-slate-900 outline-none ring-blue-500/40 transition placeholder:text-slate-400 hover:bg-slate-50 focus:ring-2 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:bg-slate-800/80"
             placeholder="you@example.com"
           />
         </label>
@@ -79,23 +80,25 @@ export function ContactForm() {
           required
           minLength={10}
           rows={5}
-          className="rounded-xl border border-slate-300 bg-white/50 px-4 py-3 text-slate-900 outline-none ring-emerald-500/40 transition placeholder:text-slate-400 hover:bg-slate-50 focus:ring-2 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:bg-slate-800/80"
+          className="rounded-xl border border-slate-300 bg-white/50 px-4 py-3 text-slate-900 outline-none ring-blue-500/40 transition placeholder:text-slate-400 hover:bg-slate-50 focus:ring-2 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-100 dark:placeholder:text-slate-500 dark:hover:bg-slate-800/80"
           placeholder="Tell me about your idea, role, or project..."
         />
       </label>
 
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
-        <button
-          type="submit"
-          disabled={submitState === "loading"}
-          className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-8 py-3.5 text-sm font-bold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white dark:bg-emerald-500 dark:text-slate-950 dark:hover:bg-emerald-400 dark:focus:ring-offset-slate-900"
-        >
-          {submitState === "loading" ? "Sending..." : "Send Message"}
-        </button>
+        <MagneticButton>
+          <button
+            type="submit"
+            disabled={submitState === "loading"}
+            className="inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-8 py-3.5 text-sm font-bold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:bg-blue-500 dark:text-slate-950 dark:hover:bg-blue-400 dark:focus:ring-offset-slate-900 sm:w-auto"
+          >
+            {submitState === "loading" ? "Sending..." : "Send Message"}
+          </button>
+        </MagneticButton>
         {message ? (
           <p
             className={`text-sm font-medium ${
-              submitState === "success" ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
+              submitState === "success" ? "text-blue-600 dark:text-blue-400" : "text-rose-600 dark:text-rose-400"
             }`}
           >
             {message}
