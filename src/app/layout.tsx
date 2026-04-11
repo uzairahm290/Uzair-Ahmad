@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/custom-cursor";
 import { ChatBot } from "@/components/chat-bot";
+import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,20 +19,59 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Uzair Ahmad | Full Stack Engineer",
   description:
-    "Personal portfolio of Uzair Ahmad — Full Stack Engineer building scalable, AI-driven, high-performance web applications.",
+    "Personal portfolio of Uzair Ahmad — Full Stack Engineer building scalable, AI-driven, and high-performance web applications.",
   keywords: [
+    "Uzair Ahmad",
     "Full Stack Developer",
     "Next.js",
     "TypeScript",
     "React",
+    "Python",
+    "Django",
     "Portfolio",
   ],
-  metadataBase: new URL("https://example.com"),
+  authors: [{ name: "Uzair Ahmad" }],
+  creator: "Uzair Ahmad",
+  metadataBase: new URL("https://uzairahmad.dev"), // Replace with your actual deployed URL
   openGraph: {
     title: "Uzair Ahmad | Full Stack Engineer",
     description:
-      "I build secure, reliable products from polished frontend experiences to scalable backend systems.",
+      "I build secure, reliable products from polished frontend experiences to scalable backend systems. Let's work together.",
+    url: "https://uzairahmad.dev", // Replace with your actual deployed URL
+    siteName: "Uzair Ahmad Portfolio",
+    images: [
+      {
+        url: "/projects/Me.png", // Or add a specific custom /og-image.png in the public folder
+        width: 1200,
+        height: 630,
+        alt: "Uzair Ahmad | Full Stack Engineer",
+      },
+    ],
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Uzair Ahmad | Full Stack Engineer",
+    description:
+      "I build secure, reliable products from polished frontend experiences to scalable backend systems.",
+    creator: "@_uzairahm_", // Your Twitter handle
+    images: ["/projects/Me.png"], // Will unfurl this image on Twitter
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg", // Fallback for apple-touch-icon
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -50,6 +90,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <CustomCursor />
           {children}
+          <Footer />
           <ChatBot />
         </ThemeProvider>
       </body>
