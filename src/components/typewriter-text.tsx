@@ -1,59 +1,73 @@
 "use client";
 
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 
 type TypewriterTextProps = {
-  text: string;
+  text: string | string[];
   className?: string;
   speed?: number;
+  pauseAfterType?: number;
+  pauseAfterDelete?: number;
+  loop?: boolean;
 };
 
 export function TypewriterText({
   text,
   className = "",
-  speed = 0.05,
+  speed = 50,
+  pauseAfterType = 2000,
+  pauseAfterDelete = 500,
+  loop = true,
 }: TypewriterTextProps) {
-  const words = text.split(" ");
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [textIndex, setTextIndex] = useState(0);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: speed,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  const texts = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
 
-  const wordVariants = {
-    hidden: {
-      opacity: 0,
-      y: 10,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-  };
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const currentText = texts[textIndex];
+
+    if (!loop && textIndex === texts.length - 1 && displayedText.length === currentText.length && !isDeleting) {
+      return;
+    }
+
+    if (isDeleting) {
+      if (displayedText.length === 0) {
+        timeout = setTimeout(() => {
+          setIsDeleting(false);
+          setTextIndex((prev) => (prev + 1) % texts.length);
+        }, pauseAfterDelete);
+      } else {
+        timeout = setTimeout(() => {
+          setDisplayedText(currentText.substring(0, displayedText.length - 1));
+        }, speed / 2); // delete faster
+      }
+    } else {
+      if (displayedText.length === currentText.length) {
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseAfterType);
+      } else {
+        timeout = setTimeout(() => {
+          setDisplayedText(currentText.substring(0, displayedText.length + 1));
+        }, speed);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, textIndex, texts, speed, pauseAfterType, pauseAfterDelete, loop]);
 
   return (
-    <motion.h1
-      className={className}
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {words.map((word, index) => (
-        <motion.span key={index} variants={wordVariants} className="inline-block mr-3">
-          {word}
-        </motion.span>
-      ))}
-    </motion.h1>
+    <div className={className}>
+      <span>{displayedText}</span>
+      <motion.span
+        animate={{ opacity: [1, 0] }}
+        transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+        className="inline-block ml-1 w-[3px] h-[1em] bg-blue-500 translate-y-[2px]"
+      />
+    </div>
   );
 }
