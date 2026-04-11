@@ -1,8 +1,47 @@
+import {
+  SiReact,
+  SiNextdotjs,
+  SiJavascript,
+  SiHtml5,
+  SiCss,
+  SiPython,
+  SiDjango,
+  SiNodedotjs,
+  SiExpress,
+  SiDotnet,
+  SiPostgresql,
+  SiMongodb,
+  SiSqlite,
+  SiGit,
+  SiGithub,
+  SiDocker,
+  SiPostman,
+  SiVercel,
+  SiRailway,
+  SiRender,
+  SiGithubactions,
+} from "react-icons/si";
+
+import {
+  MdDevices,
+  MdApi,
+  MdOutlineCloudSync,
+  MdSecurity,
+  MdStorage,
+  MdSync,
+  MdAutoAwesome,
+} from "react-icons/md";
+
+import { BiNetworkChart } from "react-icons/bi";
+
 export const socialLinks = {
   github: "https://github.com",
   linkedin: "https://www.linkedin.com",
   email: "mailto:uzairahm290@gmail.com",
-  resume: "#",
+  resume: "/projects/Uzair-Ahmad.pdf",
+  instagram: "https://www.instagram.com/_uzairahm_/",
+  twitter: "https://x.com/_uzairahm_",
+  upwork: "https://www.upwork.com/freelancers/~01d23c1dd79c3eccb3?mp_source=share",
 };
 
 export const projects = [
@@ -57,18 +96,48 @@ export const projects = [
 ] as const;
 
 export const skills = {
-  frontend: ["React", "Next.js", "JavaScript (ES6+)", "HTML5", "CSS3", "Responsive UI"],
-  backend: ["Python", "Django", "Node.js", "Express.js", ".NET", "RESTful APIs"],
-  databases: ["PostgreSQL", "MongoDB", "SQLite"],
-  tools: ["Git", "GitHub", "Docker", "Postman", "Vercel", "Railway", "Render"],
-  "ci/cd": ["GitHub Actions", "Automated Deployments", "Environment Management"],
-  "core concepts": [
-    "WebSockets",
-    "Authentication & Authorization",
-    "State Management",
-    "CRUD Operations",
-    "AI Integration & Automation",
+  frontend: [
+    { name: "React", exp: "3+ Years", icon: SiReact },
+    { name: "Next.js", exp: "2+ Years", icon: SiNextdotjs },
+    { name: "JavaScript (ES6+)", exp: "4+ Years", icon: SiJavascript },
+    { name: "HTML5", exp: "5+ Years", icon: SiHtml5 },
+    { name: "CSS3", exp: "5+ Years", icon: SiCss },
+    { name: "Responsive UI", exp: "4+ Years", icon: MdDevices }
   ],
+  backend: [
+    { name: "Python", exp: "3+ Years", icon: SiPython },
+    { name: "Django", exp: "3+ Years", icon: SiDjango },
+    { name: "Node.js", exp: "2+ Years", icon: SiNodedotjs },
+    { name: "Express.js", exp: "2+ Years", icon: SiExpress },
+    { name: ".NET", exp: "1+ Years", icon: SiDotnet },
+    { name: "RESTful APIs", exp: "3+ Years", icon: MdApi }
+  ],
+  databases: [
+    { name: "PostgreSQL", exp: "3+ Years", icon: SiPostgresql },
+    { name: "MongoDB", exp: "2+ Years", icon: SiMongodb },
+    { name: "SQLite", exp: "3+ Years", icon: SiSqlite },
+  ],
+  tools: [
+    { name: "Git", exp: "4+ Years", icon: SiGit },
+    { name: "GitHub", exp: "4+ Years", icon: SiGithub },
+    { name: "Docker", exp: "2+ Years", icon: SiDocker },
+    { name: "Postman", exp: "3+ Years", icon: SiPostman },
+    { name: "Vercel", exp: "2+ Years", icon: SiVercel },
+    { name: "Railway", exp: "1+ Years", icon: SiRailway },
+    { name: "Render", exp: "1+ Years", icon: SiRender }
+  ],
+  "CI/CD": [
+    { name: "GitHub Actions", exp: "2+ Years", icon: SiGithubactions },
+    { name: "Automated Deployments", exp: "2+ Years", icon: MdOutlineCloudSync },
+    { name: "Environment Management", exp: "2+ Years", icon: MdSecurity },
+  ],
+  "core concepts": [
+    { name: "WebSockets", exp: "2+ Years", icon: BiNetworkChart },
+    { name: "Auth & Authorization", exp: "3+ Years", icon: MdSecurity },
+    { name: "State Management", exp: "3+ Years", icon: MdStorage },
+    { name: "CRUD Operations", exp: "4+ Years", icon: MdSync },
+    { name: "AI Integration & Automation", exp: "1+ Years", icon: MdAutoAwesome }
+  ]
 };
 
 export const skillsSlider = [
