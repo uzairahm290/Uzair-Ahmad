@@ -32,7 +32,7 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
               key={`${skillName}-${index}`}
               className="flex flex-shrink-0 flex-col items-center gap-3"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-white/50 text-3xl text-emerald-600 transition hover:border-emerald-300 hover:bg-emerald-50 dark:border-slate-700/50 dark:bg-slate-800/30 dark:text-emerald-400 dark:hover:border-emerald-500/30 dark:hover:bg-slate-800/60 shadow-sm">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-white/50 text-3xl text-blue-600 transition hover:border-blue-300 hover:bg-blue-50 dark:border-slate-700/50 dark:bg-slate-800/30 dark:text-blue-400 dark:hover:border-blue-500/30 dark:hover:bg-slate-800/60 shadow-sm">
                 {IconComponent ? <IconComponent size={32} /> : null}
               </div>
               <p className="whitespace-nowrap text-center text-sm font-medium text-slate-600 dark:text-slate-300">

@@ -82,14 +82,14 @@ export function ChatBot() {
              <motion.div
                animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-               className="pointer-events-none absolute inset-0 rounded-full bg-emerald-500/40 blur-md dark:bg-emerald-400/40"
+               className="pointer-events-none absolute inset-0 rounded-full bg-blue-500/40 blur-md dark:bg-blue-400/40"
              />
           )}
         </AnimatePresence>
         
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-tr from-emerald-600 to-teal-400 text-white shadow-[0_0_20px_rgba(52,211,153,0.3)] transition-all hover:scale-110 active:scale-95 dark:from-emerald-500 dark:to-cyan-400"
+          className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-teal-400 text-white shadow-[0_0_20px_rgba(52,211,153,0.3)] transition-all hover:scale-110 active:scale-95 dark:from-blue-500 dark:to-indigo-400"
           aria-label="Toggle Chat"
         >
           <AnimatePresence mode="wait">
@@ -128,26 +128,26 @@ export function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.9 }}
             transition={{ type: "spring", bounce: 0.35, duration: 0.6 }}
-            className="fixed bottom-24 right-4 z-50 flex h-[500px] w-[calc(100vw-32px)] flex-col overflow-hidden rounded-3xl border border-slate-200/50 bg-white/60 p-[1px] shadow-2xl shadow-emerald-900/10 backdrop-blur-xl sm:right-6 sm:w-[380px] dark:border-slate-700/50 dark:bg-slate-900/60 dark:shadow-emerald-900/20"
+            className="fixed bottom-24 right-4 z-50 flex h-[500px] w-[calc(100vw-32px)] flex-col overflow-hidden rounded-3xl border border-slate-200/50 bg-white/60 p-[1px] shadow-2xl shadow-blue-900/10 backdrop-blur-xl sm:right-6 sm:w-[380px] dark:border-slate-700/50 dark:bg-slate-900/60 dark:shadow-blue-900/20"
           >
             <div className="flex h-full flex-col overflow-hidden rounded-[23px] bg-white/70 backdrop-blur-3xl dark:bg-slate-900/70">
               {/* Header */}
               <div className="relative flex items-center justify-between border-b border-slate-200/50 bg-white/40 p-4 backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-900/40">
                 <div className="flex items-center gap-3">
-                  <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white shadow-inner">
+                  <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-teal-400 text-white shadow-inner">
                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                     </svg>
                     <span className="absolute -bottom-1 -right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-slate-50 dark:bg-slate-900">
                       <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
                       </span>
                     </span>
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-slate-900 dark:text-white">Portfolio AI</h3>
-                    <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">Online & ready</p>
+                    <p className="text-xs font-medium text-blue-600 dark:text-blue-400">Online & ready</p>
                   </div>
                 </div>
                 
@@ -176,7 +176,7 @@ export function ChatBot() {
                         <div
                           className={`relative max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm backdrop-blur-md ${
                             msg.role === "user"
-                              ? "bg-gradient-to-tr from-emerald-500 to-teal-400 text-white rounded-br-sm"
+                              ? "bg-gradient-to-tr from-blue-500 to-teal-400 text-white rounded-br-sm"
                               : "bg-white/90 border border-slate-100 text-slate-700 rounded-bl-sm dark:bg-slate-800/90 dark:border-slate-700/50 dark:text-slate-200"
                           }`}
                         >
@@ -194,9 +194,9 @@ export function ChatBot() {
                         className="flex justify-start"
                       >
                         <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-slate-100 bg-white/90 px-4 py-4 shadow-sm backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-800/90">
-                          <motion.div className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0 }} />
-                          <motion.div className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.15 }} />
-                          <motion.div className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.3 }} />
+                          <motion.div className="h-1.5 w-1.5 rounded-full bg-blue-500 dark:bg-blue-400" animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0 }} />
+                          <motion.div className="h-1.5 w-1.5 rounded-full bg-blue-500 dark:bg-blue-400" animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.15 }} />
+                          <motion.div className="h-1.5 w-1.5 rounded-full bg-blue-500 dark:bg-blue-400" animate={{ y: [0, -4, 0], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.3 }} />
                         </div>
                       </motion.div>
                     )}
@@ -213,14 +213,14 @@ export function ChatBot() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Ask about my skills..."
-                    className="w-full rounded-2xl border border-slate-200/80 bg-slate-50/50 py-3.5 pl-4 pr-14 text-sm text-slate-900 shadow-inner outline-none transition-all focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 dark:border-slate-700/80 dark:bg-slate-950/50 dark:text-white dark:focus:border-emerald-500 dark:focus:bg-slate-900 dark:focus:ring-emerald-500/10"
+                    className="w-full rounded-2xl border border-slate-200/80 bg-slate-50/50 py-3.5 pl-4 pr-14 text-sm text-slate-900 shadow-inner outline-none transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700/80 dark:bg-slate-950/50 dark:text-white dark:focus:border-blue-500 dark:focus:bg-slate-900 dark:focus:ring-blue-500/10"
                     disabled={isLoading}
                   />
                   <div className="absolute right-1.5 flex h-full items-center">
                     <button
                       type="submit"
                       disabled={!input.trim() || isLoading}
-                      className="group flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white shadow-md transition-all hover:scale-105 hover:shadow-lg disabled:pointer-events-none disabled:opacity-50 dark:from-emerald-500 dark:to-cyan-400"
+                      className="group flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-teal-400 text-white shadow-md transition-all hover:scale-105 hover:shadow-lg disabled:pointer-events-none disabled:opacity-50 dark:from-blue-500 dark:to-indigo-400"
                       aria-label="Send message"
                     >
                       <motion.svg 

@@ -1,22 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useSpring } from "framer-motion";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   // Smooth springs for the outer ring
-  const springX = useSpring(0, { stiffness: 300, damping: 28, mass: 0.5 });
-  const springY = useSpring(0, { stiffness: 300, damping: 28, mass: 0.5 });
+  const springX = useSpring(mouseX, { stiffness: 500, damping: 28, mass: 0.5 });
+  const springY = useSpring(mouseY, { stiffness: 500, damping: 28, mass: 0.5 });
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      springX.set(e.clientX);
-      springY.set(e.clientY);
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
     };
 
@@ -48,7 +48,7 @@ export function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [isVisible, springX, springY]);
+  }, [isVisible, mouseX, mouseY]);
 
   if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
     return null; // Don't render on mobile
@@ -58,22 +58,20 @@ export function CustomCursor() {
     <>
       {/* Inner Dot */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[10000] hidden h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500 md:block dark:bg-emerald-400"
+        className="pointer-events-none fixed left-0 top-0 z-[10000] hidden h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 md:block dark:bg-blue-400"
+        style={{ x: mouseX, y: mouseY }}
         animate={{
-          x: mousePosition.x,
-          y: mousePosition.y,
           opacity: isVisible ? 1 : 0,
           scale: isHovering ? 0.5 : 1,
         }}
         transition={{
-          type: "tween",
-          ease: "backOut",
-          duration: 0.1,
+          scale: { type: "tween", ease: "backOut", duration: 0.1 },
+          opacity: { duration: 0.2 }
         }}
       />
       {/* Outer Glow/Ring */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[9999] hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-500/40 bg-emerald-500/10 backdrop-blur-[1px] md:block dark:border-emerald-400/40 dark:bg-emerald-400/10"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-blue-500/40 bg-blue-500/10 backdrop-blur-[1px] md:block dark:border-blue-400/40 dark:bg-blue-400/10"
         style={{
           x: springX,
           y: springY,
