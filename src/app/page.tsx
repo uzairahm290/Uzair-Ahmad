@@ -12,6 +12,8 @@ import { TypewriterText } from "@/components/typewriter-text";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { JourneyTimeline } from "@/components/journey-timeline";
 import { MagneticButton } from "@/components/magnetic-button";
+import { HeroParticlesCanvas } from "@/components/hero-particles-canvas";
+
 
 export default function Home() {
   return (
@@ -24,7 +26,7 @@ export default function Home() {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative flex w-full max-w-3xl items-center justify-between rounded-full border border-slate-200 bg-white/80 px-6 h-16 shadow-2xl shadow-blue-900/5 backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/60 dark:shadow-blue-900/20 md:px-8"
+          className="relative flex w-full max-w-5xl items-center justify-between rounded-full border border-slate-200 bg-white/80 px-6 h-16 shadow-2xl shadow-blue-900/5 backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/60 dark:shadow-blue-900/20 md:px-8"
         >
           <ScrollProgress />
           <a href="#" className="text-lg font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-400 dark:to-indigo-400 transition-transform hover:scale-105 z-10">
@@ -57,111 +59,156 @@ export default function Home() {
       </header>
 
       <main className="relative z-10 pt-20 md:pt-24">
-        <section className="flex min-h-screen flex-col items-center justify-center px-6 py-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex max-w-3xl flex-col items-center text-center"
-          >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-300">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 dark:bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-500"></span>
-              </span>
-              Available for new opportunities
-            </div>
+        <section className="relative min-h-screen overflow-hidden">
+          {/* Dynamic Interactive Node Background Canvas */}
+          <HeroParticlesCanvas />
 
-            <h1 className="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-7xl lg:text-8xl">
-              Hi, I'm{" "}
-              <motion.span 
-                className="inline-block bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-indigo-400 dark:to-blue-500 cursor-default"
-                whileHover={{ scale: 1.05, rotate: -1 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 150,
-                  damping: 10,
-                  delay: 0.2
-                }}
-              >
-                Uzair Ahmad
-              </motion.span>
-            </h1>
+          <div className="section-container relative z-20 min-h-screen flex items-center">
+            {/* Left Column: Hero Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left py-32"
+            >
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-300">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 dark:bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-500"></span>
+                  </span>
+                  Available for new opportunities
+                </div>
 
-            <TypewriterText 
-              className="mt-8 max-w-1xl text-xl leading-relaxed text-slate-600 dark:text-slate-300 md:text-2xl flex justify-center items-center min-h-[80px] text-center"
-              text={[
-                "A Full Stack Engineer crafting scalable AI-powered products",
-                "Building immersive web experiences with modern technologies",
-                "Transforming ideas into robust digital solutions"
-              ]}
-              speed={50}
-            />
-
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <MagneticButton>
-                <a
-                  href="#projects"
-                  className="group relative inline-flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-semibold text-white transition-transform hover:scale-105 active:scale-95 dark:bg-white dark:text-slate-950"
-                >
-                  Explore My Work
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
+                <h1 className="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-7xl lg:text-8xl">
+                  Hi, I'm{" "}
+                  <motion.span 
+                    className="inline-block bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-indigo-400 dark:to-blue-500 cursor-default"
+                    whileHover={{ scale: 1.05, rotate: -1 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 10,
+                      delay: 0.2
+                    }}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-              </MagneticButton>
-              <MagneticButton>
-                <a
-                  href="#contact"
-                  className="inline-flex rounded-full border border-slate-300 bg-white/50 px-8 py-3.5 text-base font-medium text-slate-700 backdrop-blur-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-200 dark:hover:bg-slate-700/50 dark:hover:text-white"
-                >
-                  Let's Talk
-                </a>
-              </MagneticButton>
+                    Uzair Ahmad
+                  </motion.span>
+                </h1>
+
+                <TypewriterText 
+                  className="mt-8 max-w-1xl text-xl leading-relaxed text-slate-600 dark:text-slate-300 md:text-2xl flex justify-center lg:justify-start items-center min-h-[80px] text-center lg:text-left"
+                  text={[
+                    "A Full Stack Engineer crafting scalable AI-powered products",
+                    "Building immersive web experiences with modern technologies",
+                    "Transforming ideas into robust digital solutions"
+                  ]}
+                  speed={50}
+                />
+
+                <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                  <MagneticButton>
+                    <a
+                      href="#projects"
+                      className="group relative inline-flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-semibold text-white transition-transform hover:scale-105 active:scale-95 dark:bg-white dark:text-slate-950"
+                    >
+                      Explore My Work
+                      <svg
+                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </a>
+                  </MagneticButton>
+                  <MagneticButton>
+                    <a
+                      href="#contact"
+                      className="inline-flex rounded-full border border-slate-300 bg-white/50 px-8 py-3.5 text-base font-medium text-slate-700 backdrop-blur-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-200 dark:hover:bg-slate-700/50 dark:hover:text-white"
+                    >
+                      Let's Talk
+                    </a>
+                  </MagneticButton>
+                </div>
+
+                <div className="mt-16 flex items-center justify-center lg:justify-start gap-6">
+                  {[
+                    { name: "GitHub", href: socialLinks.github, icon: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.34 1.544 2.906 1.186.092-.923.35-1.545.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.918.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.42 22 12c0-5.523-4.477-10-10-10z" },
+                    { name: "LinkedIn", href: socialLinks.linkedin, icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" },
+                    { name: "X (Twitter)", href: socialLinks.twitter, icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+                    { name: "Instagram", href: socialLinks.instagram, icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
+                    { name: "Upwork", href: socialLinks.upwork, icon: "M18.561 13.158c-1.102 0-2.135-.467-3.062-1.226l-.505-.411-.849 3.011c-1.076 3.738-4.495 6.353-8.349 6.353C2.565 20.885 0 18.322 0 15.105V5h2.89v10.105c0 1.621 1.341 2.947 2.906 2.947 1.637 0 3.031-1.332 3.19-2.924L10.37 5h2.906v4.619c0 1.67-.074 2.981-.221 4.148.775.845 1.666 1.405 2.651 1.57l1.092 3.842h2.909l-.865-3.045c1.476-.411 2.531-1.744 2.531-3.309 0-1.89-1.579-3.41-3.524-3.41-1.523 0-2.825 1.01-3.292 2.374-.183-.345-.37-.732-.55-1.169h-2.945c1.393 3.652 2.106 5.86 2.106 5.86l.668.536c.945.745 1.956 1.144 2.915 1.144 1.142 0 2.05-.733 2.05-1.634 0-.829-.769-1.527-1.844-1.527v-2.839c2.613.001 4.733 1.961 4.733 4.366s-2.12 4.353-4.733 4.353z" },
+                  ].map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2 text-slate-400 transition-colors hover:text-blue-400"
+                      title={social.name}
+                    >
+                      <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d={social.icon} />
+                      </svg>
+                      <span className="sr-only">{social.name}</span>
+                    </a>
+                  ))}
+                  <a
+                    href={`mailto:${socialLinks.email}`}
+                    className="p-2 text-slate-400 transition-colors hover:text-blue-400"
+                    title="Email"
+                  >
+                    <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span className="sr-only">Email</span>
+                  </a>
+                </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Portrait — absolutely pinned to bottom of hero */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            className="absolute right-0 top-0 bottom-0 w-[52%] z-10 hidden lg:block"
+          >
+            {/* Image fills full section height, feet touch the bottom */}
+            <div className="relative w-full h-full overflow-visible">
+              {/* Soft white radial glow behind face */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "45%",
+                  transform: "translate(-50%, -50%)",
+                  width: "60%",
+                  aspectRatio: "1",
+                  borderRadius: "50%",
+                  background: "radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(255,255,255,0.4) 40%, transparent 50%)",
+                  filter: "blur(32px)",
+                  zIndex: 0,
+                  pointerEvents: "none",
+                }}
+              />
+                    <Image
+                      src="/projects/transparent.png"
+                      alt="Uzair Ahmad"
+                      fill
+                      className="object-contain object-bottom hover:scale-[1.02] transition-all duration-500 select-none drop-shadow-[0_30px_60px_rgba(59,130,246,0.15)] dark:drop-shadow-[0_30px_60px_rgba(99,102,241,0.2)]"
+                      style={{ zIndex: 1 }}
+                      sizes="52vw"
+                      priority
+                    />
             </div>
 
-            <div className="mt-16 flex items-center gap-6">
-              {[
-                { name: "GitHub", href: socialLinks.github, icon: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.34 1.544 2.906 1.186.092-.923.35-1.545.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.918.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.42 22 12c0-5.523-4.477-10-10-10z" },
-                { name: "LinkedIn", href: socialLinks.linkedin, icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" },
-                { name: "X (Twitter)", href: socialLinks.twitter, icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
-                { name: "Instagram", href: socialLinks.instagram, icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
-                { name: "Upwork", href: socialLinks.upwork, icon: "M18.561 13.158c-1.102 0-2.135-.467-3.062-1.226l-.505-.411-.849 3.011c-1.076 3.738-4.495 6.353-8.349 6.353C2.565 20.885 0 18.322 0 15.105V5h2.89v10.105c0 1.621 1.341 2.947 2.906 2.947 1.637 0 3.031-1.332 3.19-2.924L10.37 5h2.906v4.619c0 1.67-.074 2.981-.221 4.148.775.845 1.666 1.405 2.651 1.57l1.092 3.842h2.909l-.865-3.045c1.476-.411 2.531-1.744 2.531-3.309 0-1.89-1.579-3.41-3.524-3.41-1.523 0-2.825 1.01-3.292 2.374-.183-.345-.37-.732-.55-1.169h-2.945c1.393 3.652 2.106 5.86 2.106 5.86l.668.536c.945.745 1.956 1.144 2.915 1.144 1.142 0 2.05-.733 2.05-1.634 0-.829-.769-1.527-1.844-1.527v-2.839c2.613.001 4.733 1.961 4.733 4.366s-2.12 4.353-4.733 4.353z" },
-              ].map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2 text-slate-400 transition-colors hover:text-blue-400"
-                  title={social.name}
-                >
-                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d={social.icon} />
-                  </svg>
-                  <span className="sr-only">{social.name}</span>
-                </a>
-              ))}
-              <a
-                href={`mailto:${socialLinks.email}`}
-                className="p-2 text-slate-400 transition-colors hover:text-blue-400"
-                title="Email"
-              >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span className="sr-only">Email</span>
-              </a>
-            </div>
+
           </motion.div>
 
           {/* Background Ambient Glow */}
@@ -201,7 +248,7 @@ export default function Home() {
                   </svg>
                   <span className="text-sm font-medium tracking-widest uppercase">Your Image Here</span>
                 </div>
-                <Image src="/projects/Me.png" alt="Uzair Ahmad" fill className="object-cover transition-transform duration-500 group-hover:scale-105" priority />
+                <Image src="/projects/Me.png" alt="Uzair Ahmad" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 384px, 448px" className="object-cover transition-transform duration-500 group-hover:scale-105" priority />
               </div>
               <div className="absolute -bottom-6 -right-6 -z-10 h-full w-full rounded-3xl border border-blue-500/20 bg-blue-50 dark:bg-blue-500/5" />
             </div>
@@ -299,7 +346,7 @@ export default function Home() {
             <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">Skills & Tech Stack</h2>
           </div>
           
-          <div className="mt-16 overflow-hidden rounded-3xl border border-slate-200 bg-white/30 p-8 backdrop-blur-md dark:border-slate-700/50 dark:bg-slate-800/20">
+          <div className="mt-16 w-screen relative left-1/2 -translate-x-1/2">
             <SkillsSlider skills={skillsSlider} />
           </div>
 
