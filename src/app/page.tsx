@@ -13,7 +13,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { JourneyTimeline } from "@/components/journey-timeline";
 import { MagneticButton } from "@/components/magnetic-button";
 import { HeroParticlesCanvas } from "@/components/hero-particles-canvas";
-
+import { GithubActivity } from "@/components/github-activity";
 
 export default function Home() {
   return (
@@ -352,7 +352,7 @@ export default function Home() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="group rounded-2xl border border-slate-200 bg-white/50 p-6 transition-colors hover:border-blue-500/30 hover:bg-white/80 dark:border-slate-700/50 dark:bg-slate-800/30 dark:hover:bg-slate-800/50">
+              <div key={category} className="group rounded-2xl border border-slate-200/60 p-6 transition-colors hover:border-blue-500/30 dark:border-slate-700/40">
                 <h3 className="text-lg font-bold capitalize text-slate-900 group-hover:text-blue-600 transition-colors dark:text-white dark:group-hover:text-blue-400">{category}</h3>
                 <div className="mt-6 flex flex-wrap gap-3">
                   {items.map((skill) => {
@@ -363,7 +363,7 @@ export default function Home() {
                         className="group/tooltip relative"
                       >
                         <span
-                          className="inline-flex cursor-help items-center gap-1.5 rounded-full border border-slate-300 bg-slate-100/50 px-3.5 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-blue-500/50 hover:bg-blue-50 hover:text-blue-700 dark:border-slate-600 dark:bg-slate-700/30 dark:text-slate-300 dark:hover:border-blue-400/50 dark:hover:bg-blue-400/10 dark:hover:text-blue-300"
+                          className="inline-flex cursor-help items-center gap-1.5 rounded-full border border-slate-200/80 px-3.5 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-blue-500/50 hover:text-blue-700 dark:border-slate-700/50 dark:text-slate-300 dark:hover:border-blue-400/50 dark:hover:text-blue-300"
                         >
                           <span aria-hidden="true" className="text-blue-600 dark:text-blue-400">
                             <Icon size={16} />
@@ -382,6 +382,13 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </AnimatedSection>
+
+        <AnimatedSection className="section-container mt-32">
+          <div className="flex flex-col items-center text-center">
+            <h3 className="text-2xl font-bold text-slate-900 md:text-3xl dark:text-white mb-10">Days I Code</h3>
+          </div>
+          <GithubActivity />
         </AnimatedSection>
 
         <AnimatedSection id="journey" className="section-container mt-40">

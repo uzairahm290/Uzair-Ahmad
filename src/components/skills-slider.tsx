@@ -33,7 +33,7 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
                 key={`${name}-${i}`}
                 className="flex flex-shrink-0 flex-col items-center gap-3 px-7"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200/60 bg-white/40 text-blue-500 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-blue-400/60 hover:bg-blue-50/60 hover:scale-110 dark:border-slate-700/40 dark:bg-slate-800/30 dark:text-blue-400 dark:hover:border-blue-500/40 dark:hover:bg-slate-800/60">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200/40 text-blue-500 transition-all duration-300 hover:border-blue-400/60 hover:scale-110 dark:border-slate-700/30 dark:text-blue-400 dark:hover:border-blue-500/40">
                   {Icon ? <Icon size={26} /> : null}
                 </div>
                 <p className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500">
