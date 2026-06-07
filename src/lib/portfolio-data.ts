@@ -46,6 +46,27 @@ export const socialLinks = {
 
 export const projects = [
   {
+    name: "EchoHire — AI Hiring Platform",
+    summary: "AI-powered end-to-end hiring platform with intelligent interviews, resume analysis, and LinkedIn optimization.",
+    problem:
+      "Recruiters wasted hours on manual screening while candidates lacked feedback on why they failed — there was no unified, intelligent platform connecting both sides efficiently.",
+    solution:
+      "Built a full-stack hiring platform with AI-driven mock interviews, real-time resume scoring, LinkedIn profile optimization, and role-based dashboards for Admins, Recruiters, and Candidates — automating the entire hiring funnel.",
+    tech: ["Next.js", "Python", "OpenAI API", "PostgreSQL", "Role-Based Auth"],
+    demo: "#",
+    github: "https://github.com",
+    image: "/projects/echohire.png",
+    color: {
+      accent: "from-blue-500 to-indigo-600 dark:from-blue-400 dark:to-indigo-500",
+      glow: "rgba(59, 130, 246, 0.25)",
+      border: "border-blue-200 dark:border-blue-500/20 hover:border-blue-500/40",
+      badge: "bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/20",
+      dot: "bg-blue-500",
+      line: "bg-blue-500/50",
+      text: "text-blue-600 dark:text-blue-400"
+    }
+  },
+  {
     name: "CyberCrux — AI Interview Platform",
     summary: "AI-powered cybersecurity interview preparation platform.",
     problem:
@@ -258,6 +279,6 @@ export const journey = [
     year: "Awards & Certificates",
     title: "CTF / Blue Teaming / Google CyberSecurity",
     detail:
-      "CTF Winner at TechVerse’25 (UMT), 2nd Place Blue Teaming at Cybersecurity Hackathon 2023 (Ignite), and Google CyberSecurity Professional Certificate.",
+      "CTF Winner at TechVerse'25 (UMT), 2nd Place Blue Teaming at Cybersecurity Hackathon 2023 (Ignite), and Google CyberSecurity Professional Certificate.",
   },
 ] as const;
