@@ -390,14 +390,14 @@ export default function Home() {
           </div>
 
           {/* Timeline Container */}
-          <div className="relative mt-12 pl-8 lg:pl-0">
-            {/* Background Timeline track line */}
-            <div className="absolute left-4 lg:left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-slate-200 dark:bg-slate-800" />
+          <div className="relative mt-12 lg:pl-0">
+            {/* Background Timeline track line — desktop only */}
+            <div className="absolute hidden lg:block left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-slate-200 dark:bg-slate-800" />
             
-            {/* Active/Scrolling Timeline track line */}
+            {/* Active/Scrolling Timeline track line — desktop only */}
             <motion.div 
               style={{ scaleY: timelineScaleY, transformOrigin: "top" }}
-              className="absolute left-4 lg:left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-gradient-to-b from-orange-500 via-purple-500 via-sky-500 via-emerald-500 via-red-500 to-cyan-500"
+              className="absolute hidden lg:block left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-gradient-to-b from-orange-500 via-purple-500 via-sky-500 via-emerald-500 via-red-500 to-cyan-500"
             />
 
             {/* Project rows */}
@@ -428,8 +428,8 @@ export default function Home() {
                       />
                     )}
 
-                    {/* Timeline dot */}
-                    <div className="absolute top-1/2 -translate-y-1/2 left-4 lg:left-1/2 lg:-translate-x-1/2 z-20">
+                    {/* Timeline dot — desktop only */}
+                    <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-20">
                       <motion.div
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
@@ -442,7 +442,7 @@ export default function Home() {
                       </motion.div>
                     </div>
 
-                    {/* Mockup Column */}
+                    {/* Mockup Column — always on top on mobile, alternates on desktop */}
                     <motion.div
                       initial={{ opacity: 0, x: isEven ? 50 : -50 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -475,7 +475,7 @@ export default function Home() {
                       />
                     </motion.div>
 
-                    {/* Text Details Column */}
+                    {/* Text Details Column — always below on mobile, alternates on desktop */}
                     <motion.div
                       initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                       whileInView={{ opacity: 1, x: 0 }}
