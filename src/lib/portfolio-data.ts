@@ -55,7 +55,16 @@ export const projects = [
     tech: ["React.js", "Node.js", "WebSockets", "MongoDB", "Express.js"],
     demo: "#",
     github: "https://github.com",
-    image: "/projects/pulseboard.svg",
+    image: "/projects/cybercrux.png",
+    color: {
+      accent: "from-orange-500 to-amber-500 dark:from-orange-400 dark:to-amber-400",
+      glow: "rgba(249, 115, 22, 0.2)",
+      border: "border-orange-200 dark:border-orange-500/20 hover:border-orange-500/40",
+      badge: "bg-orange-50 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20",
+      dot: "bg-orange-500",
+      line: "bg-orange-500/50",
+      text: "text-orange-600 dark:text-orange-400"
+    }
   },
   {
     name: "Eventra — Event Management Platform",
@@ -67,7 +76,16 @@ export const projects = [
     tech: ["React.js", "ASP.NET Core", "REST APIs", "SQL Database"],
     demo: "#",
     github: "https://github.com",
-    image: "/projects/flowstate.svg",
+    image: "/projects/eventra.png",
+    color: {
+      accent: "from-purple-500 to-indigo-500 dark:from-purple-400 dark:to-indigo-400",
+      glow: "rgba(168, 85, 247, 0.2)",
+      border: "border-purple-200 dark:border-purple-500/20 hover:border-purple-500/40",
+      badge: "bg-purple-50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-500/20",
+      dot: "bg-purple-500",
+      line: "bg-purple-500/50",
+      text: "text-purple-600 dark:text-purple-400"
+    }
   },
   {
     name: "Jarvis — Python Voice Assistant",
@@ -79,7 +97,16 @@ export const projects = [
     tech: ["Python", "Speech Recognition", "Automation", "NLP"],
     demo: "#",
     github: "https://github.com",
-    image: "/projects/shipfast.svg",
+    image: "/projects/jarvis.png",
+    color: {
+      accent: "from-sky-500 to-blue-500 dark:from-sky-400 dark:to-blue-400",
+      glow: "rgba(14, 165, 233, 0.25)",
+      border: "border-sky-200 dark:border-sky-500/20 hover:border-sky-500/40",
+      badge: "bg-sky-50 dark:bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-500/20",
+      dot: "bg-sky-500",
+      line: "bg-sky-500/50",
+      text: "text-sky-600 dark:text-sky-400"
+    }
   },
   {
     name: "Qalbiyah — AI Wellness App",
@@ -91,7 +118,58 @@ export const projects = [
     tech: ["React", "Node.js", "MongoDB", "REST APIs", "NLP"],
     demo: "#",
     github: "https://github.com",
-    image: "/projects/mentormatch.svg",
+    image: "/projects/eventra.png",
+    color: {
+      accent: "from-emerald-500 to-teal-500 dark:from-emerald-400 dark:to-teal-400",
+      glow: "rgba(16, 185, 129, 0.2)",
+      border: "border-emerald-200 dark:border-emerald-500/20 hover:border-emerald-500/40",
+      badge: "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/20",
+      dot: "bg-emerald-500",
+      line: "bg-emerald-500/50",
+      text: "text-emerald-600 dark:text-emerald-400"
+    }
+  },
+  {
+    name: "Vision Fitness — Modern Gym Website",
+    summary: "Premium, responsive digital presence for a fitness club.",
+    problem:
+      "A fitness club needed a premium, highly engaging website to display club facilities, showcase trainers, and drive membership subscriptions.",
+    solution:
+      "Built a dark-themed responsive website featuring interactive trainer cards, dynamic class information, and clear conversion paths.",
+    tech: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "Responsive Design"],
+    demo: "#",
+    github: "https://github.com",
+    image: "/projects/vision.png",
+    color: {
+      accent: "from-red-500 to-rose-600 dark:from-red-400 dark:to-rose-500",
+      glow: "rgba(239, 68, 68, 0.2)",
+      border: "border-red-200 dark:border-red-500/20 hover:border-red-500/40",
+      badge: "bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-300 border-red-200 dark:border-red-500/20",
+      dot: "bg-red-500",
+      line: "bg-red-500/50",
+      text: "text-red-600 dark:text-red-400"
+    }
+  },
+  {
+    name: "Pixel Breaker — Console Arcade Game",
+    summary: "Classic Brick Breaker game implemented in C++ for the console.",
+    problem:
+      "Wanted to build a terminal-based arcade experience to practice core programming structures and console render loops.",
+    solution:
+      "Developed interactive C++ gameplay with responsive paddle physics, collision detection, and scoreboards, plus pause, save, and load file functions.",
+    tech: ["C++", "Console UI", "File Handling", "OOP Concepts"],
+    demo: "#",
+    github: "https://github.com",
+    image: "/projects/pixel.png",
+    color: {
+      accent: "from-cyan-500 to-teal-500 dark:from-cyan-400 dark:to-teal-400",
+      glow: "rgba(6, 182, 212, 0.2)",
+      border: "border-cyan-200 dark:border-cyan-500/20 hover:border-cyan-500/40",
+      badge: "bg-cyan-50 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/20",
+      dot: "bg-cyan-500",
+      line: "bg-cyan-500/50",
+      text: "text-cyan-600 dark:text-cyan-400"
+    }
   },
 ] as const;
 
