@@ -6,7 +6,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { AnimatedSection } from "@/components/animated-section";
 import { ContactForm } from "@/components/contact-form";
 import { SkillsSlider } from "@/components/skills-slider";
-import { projects, skills, skillsSlider, socialLinks } from "@/lib/portfolio-data";
+import { projects, services, skills, skillsSlider, socialLinks } from "@/lib/portfolio-data";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TypewriterText } from "@/components/typewriter-text";
@@ -45,7 +45,7 @@ export default function Home() {
             UZ.
           </a>
           <ul className="hidden items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300 md:flex z-10">
-            {["Projects", "Skills", "Journey", "Contact"].map((item) => (
+            {["Projects", "Skills", "Journey", "Services", "Contact"].map((item) => (
               <li key={item}>
                 <a 
                   href={`#${item.toLowerCase()}`} 
@@ -620,6 +620,43 @@ export default function Home() {
               Sharpening advanced backend engineering, AI integration patterns,
               and deployment automation to build resilient production-grade systems.
             </h2>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection id="services" className="section-container mt-40">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-blue-700 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
+              </span>
+              What I Can Do For You
+            </div>
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-white">
+              Freelance & Consulting Services
+            </h2>
+            <p className="mx-auto mb-16 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+              Whether you need a full-stack web application from scratch or want to integrate modern AI capabilities into your existing product, I can help you build it.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+            {services.map((service) => (
+              <div 
+                key={service.title}
+                className="group relative flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl dark:border-slate-800 dark:bg-[#0B1221] dark:hover:border-blue-500"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-500 dark:group-hover:text-white">
+                  <service.icon className="h-7 w-7" />
+                </div>
+                <h3 className="mt-2 text-xl font-bold text-slate-900 dark:text-white">
+                  {service.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
           </div>
         </AnimatedSection>
 

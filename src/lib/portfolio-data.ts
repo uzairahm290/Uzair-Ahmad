@@ -282,3 +282,26 @@ export const journey = [
       "CTF Winner at TechVerse'25 (UMT), 2nd Place Blue Teaming at Cybersecurity Hackathon 2023 (Ignite), and Google CyberSecurity Professional Certificate.",
   },
 ] as const;
+
+export const services = [
+  {
+    title: "Full Stack Web Development",
+    description: "Building scalable, high-performance web applications from scratch using modern frameworks like React, Next.js, and Tailwind CSS.",
+    icon: MdDevices,
+  },
+  {
+    title: "Custom Backend & APIs",
+    description: "Designing robust database architectures and secure RESTful APIs using Node.js, Python (Django), or .NET Core.",
+    icon: MdApi,
+  },
+  {
+    title: "AI & LLM Integration",
+    description: "Integrating intelligent AI features like custom chatbots, RAG systems, and OpenAI into your existing products.",
+    icon: MdAutoAwesome,
+  },
+  {
+    title: "Performance & System Architecture",
+    description: "Auditing and optimizing slow applications, improving Core Web Vitals, and setting up reliable CI/CD pipelines.",
+    icon: MdOutlineCloudSync,
+  },
+];
