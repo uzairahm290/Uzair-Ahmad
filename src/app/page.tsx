@@ -84,7 +84,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left py-16 lg:py-32"
+              className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left py-8 md:py-16 lg:py-32"
             >
 
                 <motion.h1
@@ -117,7 +117,7 @@ export default function Home() {
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
                 >
                   <TypewriterText 
-                    className="mt-8 max-w-1xl text-xl leading-relaxed text-slate-600 dark:text-slate-300 md:text-2xl flex justify-center lg:justify-start items-center min-h-[80px] text-center lg:text-left"
+                    className="mt-4 md:mt-8 max-w-1xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 lg:text-2xl flex justify-center lg:justify-start items-center min-h-[60px] md:min-h-[80px] text-center lg:text-left"
                     text={[
                       "A Full Stack Engineer crafting scalable AI-powered products",
                       "Building immersive web experiences with modern technologies",
@@ -131,7 +131,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 25 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, ease: "easeOut", delay: 0.58 }}
-                  className="mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto px-4 sm:px-0"
+                  className="mt-6 md:mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0"
                 >
                   <MagneticButton>
                     <a
@@ -165,7 +165,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: 0.72 }}
-                  className="mt-10 flex items-center justify-center lg:justify-start gap-0"
+                  className="mt-6 md:mt-10 flex items-center justify-center lg:justify-start gap-0 scale-90 md:scale-100 origin-center lg:origin-left"
                 >
                   {[
                     { value: "3+", label: "Years Exp" },
@@ -192,7 +192,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: 0.85 }}
-                  className="mt-8 flex items-center justify-center lg:justify-start gap-6"
+                  className="mt-4 md:mt-8 flex items-center justify-center lg:justify-start gap-6 pb-8 md:pb-0"
                 >
                   {[
                     { name: "GitHub", href: socialLinks.github, icon: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.34 1.544 2.906 1.186.092-.923.35-1.545.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.918.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.42 22 12c0-5.523-4.477-10-10-10z" },
@@ -346,7 +346,7 @@ export default function Home() {
 
           <div className="relative grid gap-8 lg:gap-8 lg:grid-cols-[0.8fr_1.2fr] items-stretch">
             {/* Left Column: Portrait Card */}
-            <div className="relative group/portrait w-full aspect-[4/5] lg:aspect-auto min-h-[400px] lg:min-h-[500px] rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1117] shadow-2xl">
+            <div className="relative group/portrait w-full aspect-[4/5] lg:aspect-auto min-h-[400px] lg:min-h-[500px] rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-800/50 backdrop-blur-md shadow-2xl dark:shadow-none">
               {/* Corner brackets */}
               <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-slate-300 dark:border-slate-600/50 z-20" />
               <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-slate-300 dark:border-slate-600/50 z-20" />
@@ -405,7 +405,7 @@ export default function Home() {
             </div>
 
             {/* Right Column: Bio Card */}
-            <div className="relative w-full rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1117] p-8 md:p-10 flex flex-col justify-between shadow-2xl">
+            <div className="relative w-full rounded-[2rem] border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-800/50 backdrop-blur-md p-8 md:p-10 flex flex-col justify-between shadow-2xl dark:shadow-none">
               <div>
                 {/* Top Row removed as per request */}
 

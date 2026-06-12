@@ -92,7 +92,7 @@ export function InteractiveContact() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="bg-slate-50 dark:bg-[#0d1117] p-8 md:p-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-800/60 shadow-xl shadow-slate-200/20 dark:shadow-none">
+          <div className="bg-white dark:bg-slate-800/50 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-700/50 shadow-xl shadow-slate-200/20 dark:shadow-none">
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Send a Message</h3>
             <ContactForm />
           </div>
