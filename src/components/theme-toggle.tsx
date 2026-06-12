@@ -18,9 +18,9 @@ export function ThemeToggle() {
   const handleToggle = () => {
     // Play a realistic mechanical click using Web Audio API impulse noise
     try {
-      const AudioContext = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (AudioContext) {
-        const ctx = new AudioContext();
+      const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof window.AudioContext }).webkitAudioContext;
+      if (AudioContextClass) {
+        const ctx = new AudioContextClass();
         
         // Create a 10ms buffer
         const buffer = ctx.createBuffer(1, ctx.sampleRate * 0.01, ctx.sampleRate);
