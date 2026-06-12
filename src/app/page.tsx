@@ -4,14 +4,16 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { AnimatedSection } from "@/components/animated-section";
-import { ContactForm } from "@/components/contact-form";
+import { InteractiveContact } from "@/components/interactive-contact";
 import { SkillsSlider } from "@/components/skills-slider";
-import { projects, services, skills, skillsSlider, socialLinks } from "@/lib/portfolio-data";
+import { projects, services, skillsSlider, socialLinks } from "@/lib/portfolio-data";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TypewriterText } from "@/components/typewriter-text";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { JourneyTimeline } from "@/components/journey-timeline";
+import { SkillsConstellation } from "@/components/skills-constellation";
+import { ServicesScroll } from "@/components/services-scroll";
 import { MagneticButton } from "@/components/magnetic-button";
 import { HeroParticlesCanvas } from "@/components/hero-particles-canvas";
 import { GithubActivity } from "@/components/github-activity";
@@ -30,7 +32,7 @@ export default function Home() {
   });
 
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative overflow-clip">
       <div className="gradient-orb pointer-events-none fixed -left-24 top-0 h-[420px] w-[420px] blur-2xl" />
       <div className="pointer-events-none fixed -right-24 top-52 h-[340px] w-[340px] rounded-full bg-violet-500/10 dark:bg-violet-500/10 blur-3xl opacity-50 dark:opacity-100" />
 
@@ -344,15 +346,15 @@ export default function Home() {
 
           <div className="relative grid gap-8 lg:gap-8 lg:grid-cols-[0.8fr_1.2fr] items-stretch">
             {/* Left Column: Portrait Card */}
-            <div className="relative group/portrait w-full aspect-[4/5] lg:aspect-auto min-h-[400px] lg:min-h-[500px] rounded-[2rem] overflow-hidden border border-slate-800 bg-[#0d1117] shadow-2xl">
+            <div className="relative group/portrait w-full aspect-[4/5] lg:aspect-auto min-h-[400px] lg:min-h-[500px] rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1117] shadow-2xl">
               {/* Corner brackets */}
-              <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-slate-600/50 z-20" />
-              <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-slate-600/50 z-20" />
-              <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-slate-600/50 z-20" />
-              <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-slate-600/50 z-20" />
+              <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-slate-300 dark:border-slate-600/50 z-20" />
+              <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-slate-300 dark:border-slate-600/50 z-20" />
+              <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-slate-300 dark:border-slate-600/50 z-20" />
+              <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-slate-300 dark:border-slate-600/50 z-20" />
               
               {/* Systems Online Tag */}
-              <div className="absolute top-1/2 -translate-y-1/2 -left-2 z-20 flex items-center gap-2 bg-slate-800/80 backdrop-blur-md border border-slate-700 px-3 py-2 rounded-lg text-emerald-400 text-xs font-mono font-bold shadow-lg">
+              <div className="absolute top-1/2 -translate-y-1/2 -left-2 z-20 flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200 dark:border-slate-700 px-3 py-2 rounded-lg text-emerald-600 dark:text-emerald-400 text-xs font-mono font-bold shadow-lg">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
                 </svg>
@@ -386,13 +388,13 @@ export default function Home() {
               </motion.div>
 
               {/* Bottom Info Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 pt-24 z-20 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-8 pt-24 z-20 bg-gradient-to-t from-white via-white/80 dark:from-[#09090b] dark:via-[#09090b]/80 to-transparent">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-3 backdrop-blur-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Available for hire</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-500 uppercase tracking-wider">Available for hire</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-1">Uzair Ahmad</h3>
-                <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Uzair Ahmad</h3>
+                <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 text-xs">
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -403,42 +405,31 @@ export default function Home() {
             </div>
 
             {/* Right Column: Bio Card */}
-            <div className="relative w-full rounded-[2rem] border border-slate-800 bg-[#0d1117] p-8 md:p-10 flex flex-col justify-between shadow-2xl">
+            <div className="relative w-full rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1117] p-8 md:p-10 flex flex-col justify-between shadow-2xl">
               <div>
-                {/* Top Row: Button */}
-                <div className="flex justify-end mb-8">
-                  <a href="/Resume.pdf" target="_blank" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/40 border border-slate-700/50 text-slate-300 text-[10px] font-bold hover:bg-slate-700 transition-colors uppercase tracking-wider">
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Load Full Profile
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
+                {/* Top Row removed as per request */}
 
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-8 leading-tight">
                   Architecting the <br />
                   <span className="text-blue-500">Intelligent Web</span>
                 </h2>
 
-                <div className="space-y-6 text-slate-400 text-sm md:text-base leading-relaxed">
+                <div className="space-y-6 text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
                   <p>
-                    I am a <strong className="text-slate-200 font-semibold">Full Stack Developer</strong>, <strong className="text-slate-200 font-semibold">AI Specialist</strong>, and <strong className="text-slate-200 font-semibold">Designer</strong> focused on building the next generation of digital products. My work sits at the intersection of elegant code, thoughtful design, and neural automation.
+                    I am a <strong className="text-slate-900 dark:text-slate-200 font-semibold">Full Stack Developer</strong>, <strong className="text-slate-900 dark:text-slate-200 font-semibold">AI Specialist</strong>, and <strong className="text-slate-900 dark:text-slate-200 font-semibold">Designer</strong> focused on building the next generation of digital products. My work sits at the intersection of elegant code, thoughtful design, and neural automation.
                   </p>
                   <p>
-                    With extensive experience in <span className="text-red-400">Python</span> and <span className="text-blue-400">React</span> ecosystems, I don&apos;t just build applications—I engineer living systems that learn, adapt, and scale. From predictive algorithms to seamless user interfaces, I craft solutions that look stunning and feel magical.
+                    With extensive experience in <span className="text-red-500 dark:text-red-400 font-medium">Python</span> and <span className="text-blue-500 dark:text-blue-400 font-medium">React</span> ecosystems, I don&apos;t just build applications—I engineer living systems that learn, adapt, and scale. From predictive algorithms to seamless user interfaces, I craft solutions that look stunning and feel magical.
                   </p>
                 </div>
               </div>
 
               {/* Bottom Row: Languages */}
-              <div className="mt-12 pt-8 border-t border-slate-800/50 flex flex-wrap gap-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/30 border border-slate-700/50 text-[11px] font-medium text-slate-300">
+              <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800/50 flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50 text-[11px] font-medium text-slate-700 dark:text-slate-300">
                   <span>🇬🇧</span> English <span className="text-slate-500">(Fluent)</span>
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/30 border border-slate-700/50 text-[11px] font-medium text-slate-300">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50 text-[11px] font-medium text-slate-700 dark:text-slate-300">
                   <span>🇵🇰</span> Urdu <span className="text-slate-500">(Native)</span>
                 </div>
               </div>
@@ -638,12 +629,10 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         <AnimatedSection id="skills" className="section-container mt-40">
           <div className="flex flex-col items-center justify-center text-center mb-8">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
               <span className="text-slate-900 dark:text-white">Skills &</span> <span className="text-blue-500">Tech Stack</span>
-              {/* Subtle glowing underline effect */}
               <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
             </h2>
             <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
@@ -651,44 +640,14 @@ export default function Home() {
             </p>
           </div>
           
+          <div className="mt-12">
+            <SkillsConstellation />
+          </div>
+
           <div className="mt-16 w-screen relative left-1/2 -translate-x-1/2">
             <SkillsSlider skills={skillsSlider} />
           </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="group rounded-2xl border border-slate-200/60 p-6 transition-colors hover:border-blue-500/30 dark:border-slate-700/40">
-                <h3 className="text-lg font-bold capitalize text-slate-900 group-hover:text-blue-600 transition-colors dark:text-white dark:group-hover:text-blue-400">{category}</h3>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {items.map((skill) => {
-                    const Icon = skill.icon;
-                    return (
-                      <div
-                        key={skill.name}
-                        className="group/tooltip relative"
-                      >
-                        <span
-                          className="inline-flex cursor-help items-center gap-1.5 rounded-full border border-slate-200/80 px-3.5 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-blue-500/50 hover:text-blue-700 dark:border-slate-700/50 dark:text-slate-300 dark:hover:border-blue-400/50 dark:hover:text-blue-300"
-                        >
-                          <span aria-hidden="true" className="text-blue-600 dark:text-blue-400">
-                            <Icon size={16} />
-                          </span>
-                          {skill.name}
-                        </span>
-                        {/* Tooltip */}
-                        <div className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white opacity-0 shadow-lg shadow-blue-500/10 transition-all duration-200 group-hover/tooltip:-top-12 group-hover/tooltip:opacity-100 dark:bg-blue-500 dark:text-slate-950 z-10">
-                          {skill.exp}
-                          <div className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-slate-900 dark:bg-blue-500" />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
         </AnimatedSection>
-
         <AnimatedSection className="section-container mt-32">
           <div className="flex flex-col items-center text-center">
             <h3 className="text-2xl font-bold text-slate-900 md:text-3xl dark:text-white mb-10">Days I Code</h3>
@@ -724,137 +683,10 @@ export default function Home() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection id="services" className="section-container mt-40">
-          <div className="flex flex-col items-center justify-center text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-              <span className="text-slate-900 dark:text-white">Freelance &</span> <span className="text-blue-500">Consulting</span>
-              {/* Subtle glowing underline effect */}
-              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
-            </h2>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              Whether you need a full-stack web application from scratch or want to integrate modern AI capabilities into your existing product, I can help you build it.
-            </p>
-          </div>
+        <ServicesScroll />
 
-          <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-            {services.map((service) => (
-              <div 
-                key={service.title}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl dark:border-slate-800 dark:bg-[#0B1221] dark:hover:border-blue-500"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-500 dark:group-hover:text-white">
-                  <service.icon className="h-7 w-7" />
-                </div>
-                <h3 className="mt-2 text-xl font-bold text-slate-900 dark:text-white">
-                  {service.title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection id="contact" className="section-container mt-40 pb-32">
-          <div className="flex flex-col items-center justify-center text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-              <span className="text-slate-900 dark:text-white">Let&apos;s</span> <span className="text-blue-500">Connect</span>
-              {/* Subtle glowing underline effect */}
-              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
-            </h2>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              Ready to bring your ideas to life? Fill out the form below or reach out directly.
-            </p>
-          </div>
-
-          <div className="grid gap-12 lg:grid-cols-[1fr_400px]">
-             <div>
-              <div className="mt-2">
-                <ContactForm />
-              </div>
-            </div>
-
-            <aside className="group flex flex-col justify-center space-y-8 rounded-3xl border border-slate-200 bg-white/50 p-8 backdrop-blur-md transition-colors hover:border-blue-500/30 hover:bg-white/80 dark:border-slate-700/50 dark:bg-slate-800/20 dark:hover:bg-slate-800/40">
-              <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">Contact Info</h3>
-              <div className="space-y-6 text-slate-600 dark:text-slate-300">
-                <div>
-                  <p className="text-sm font-medium uppercase tracking-wider text-slate-500">Email</p>
-                  <a className="mt-1 inline-block text-lg font-medium text-blue-600 transition hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300" href={`mailto:${socialLinks.email}`}>
-                    {socialLinks.email}
-                  </a>
-                </div>
-                <div>
-                  <p className="text-sm font-medium uppercase tracking-wider text-slate-500">Phone</p>
-                  <p className="mt-1 text-lg font-medium text-slate-900 dark:text-white">+92 309 6874343</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium uppercase tracking-wider text-slate-500">Location</p>
-                  <p className="mt-1 text-lg font-medium text-slate-900 dark:text-white">Johar Town, Lahore</p>
-                </div>
-                <div className="pt-4">
-                  <p className="text-sm font-medium uppercase tracking-wider text-slate-500 mb-4">Socials</p>
-                  <div className="flex flex-wrap gap-4 mt-2">
-                    <a
-                      href={socialLinks.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-full border border-slate-300 bg-white p-3 text-slate-600 transition hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
-                      title="GitHub"
-                    >
-                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.34 1.544 2.906 1.186.092-.923.35-1.545.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.918.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.42 22 12c0-5.523-4.477-10-10-10z" />
-                      </svg>
-                    </a>
-                    <a
-                      href={socialLinks.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-full border border-slate-300 bg-white p-3 text-slate-600 transition hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
-                      title="LinkedIn"
-                    >
-                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
-                      </svg>
-                    </a>
-                    <a
-                      href={socialLinks.twitter}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-full border border-slate-300 bg-white p-3 text-slate-600 transition hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
-                      title="X (Twitter)"
-                    >
-                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
-                    </a>
-                    <a
-                      href={socialLinks.instagram}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-full border border-slate-300 bg-white p-3 text-slate-600 transition hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
-                      title="Instagram"
-                    >
-                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                      </svg>
-                    </a>
-                    <a
-                      href={socialLinks.upwork}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-full border border-slate-300 bg-white p-3 text-slate-600 transition hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-blue-500/10 dark:hover:text-blue-400"
-                      title="Upwork"
-                    >
-                      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.561 13.158c-1.102 0-2.135-.467-3.062-1.226l-.505-.411-.849 3.011c-1.076 3.738-4.495 6.353-8.349 6.353C2.565 20.885 0 18.322 0 15.105V5h2.89v10.105c0 1.621 1.341 2.947 2.906 2.947 1.637 0 3.031-1.332 3.19-2.924L10.37 5h2.906v4.619c0 1.67-.074 2.981-.221 4.148.775.845 1.666 1.405 2.651 1.57l1.092 3.842h2.909l-.865-3.045c1.476-.411 2.531-1.744 2.531-3.309 0-1.89-1.579-3.41-3.524-3.41-1.523 0-2.825 1.01-3.292 2.374-.183-.345-.37-.732-.55-1.169h-2.945c1.393 3.652 2.106 5.86 2.106 5.86l.668.536c.945.745 1.956 1.144 2.915 1.144 1.142 0 2.05-.733 2.05-1.634 0-.829-.769-1.527-1.844-1.527v-2.839c2.613.001 4.733 1.961 4.733 4.366s-2.12 4.353-4.733 4.353z" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
+        <AnimatedSection id="contact" className="section-container mt-20 pb-16 relative z-10 px-4 md:px-8">
+          <InteractiveContact />
         </AnimatedSection>
       </main>
     </div>

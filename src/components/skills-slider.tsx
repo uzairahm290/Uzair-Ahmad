@@ -14,13 +14,7 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
     <div className="py-8 overflow-hidden select-none">
       <div className="relative">
         {/* Track */}
-        <div
-          className="flex w-max"
-          style={{
-            animation: "marquee 55s linear infinite",
-            willChange: "transform",
-          }}
-        >
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
           {items.map((name, i) => {
             const Icon = skillIcons[name];
             return (
@@ -41,6 +35,10 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
       </div>
 
       <style>{`
+        .animate-marquee {
+          animation: marquee 55s linear infinite;
+          will-change: transform;
+        }
         @keyframes marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
