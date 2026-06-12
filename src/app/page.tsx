@@ -15,6 +15,7 @@ import { JourneyTimeline } from "@/components/journey-timeline";
 import { MagneticButton } from "@/components/magnetic-button";
 import { HeroParticlesCanvas } from "@/components/hero-particles-canvas";
 import { GithubActivity } from "@/components/github-activity";
+import { CircularStamp } from "@/components/circular-stamp";
 
 export default function Home() {
   const projectsContainerRef = useRef<HTMLDivElement>(null);
@@ -322,6 +323,10 @@ export default function Home() {
               filter: "blur(8px)",
             }}
           />
+
+          <div className="absolute bottom-16 right-16 z-30 hidden lg:block hover:scale-105 transition-transform duration-300">
+            <CircularStamp text="UZAIR AHMAD • FULL STACK ENGINEER • " />
+          </div>
         </section>
 
         <AnimatedSection className="section-container mt-32 relative">
