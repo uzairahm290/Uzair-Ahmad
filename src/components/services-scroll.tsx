@@ -92,7 +92,6 @@ export function ServicesScroll() {
             // 3D Math for True Depth
             const isCenter = relativeIndex === 0;
             const isLeft = relativeIndex === -1;
-            const isRight = relativeIndex === 1;
 
             // Push side cards further out and BACKWARDS in Z-space
             const x = relativeIndex * (isMobile ? 85 : 75); // On mobile push them further off-screen

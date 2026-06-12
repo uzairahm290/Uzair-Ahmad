@@ -4,6 +4,12 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { journey } from "@/lib/portfolio-data";
 
+interface JourneyItem {
+  year: string;
+  title: string;
+  detail: string;
+}
+
 // Extracted component to handle individual scroll intersection tracking
 function JourneyScrollItem({ 
   event, 
@@ -11,7 +17,7 @@ function JourneyScrollItem({
   activeIndex, 
   setActiveIndex 
 }: { 
-  event: any, 
+  event: JourneyItem, 
   idx: number, 
   activeIndex: number, 
   setActiveIndex: (i: number) => void 

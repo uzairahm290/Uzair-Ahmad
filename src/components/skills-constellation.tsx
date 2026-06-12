@@ -4,8 +4,25 @@ import { motion } from "framer-motion";
 import { FaFigma } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 import { GiBrain } from "react-icons/gi";
+import { IconType } from "react-icons";
 
-const constellations = [
+interface Tag {
+  name: string;
+  main?: boolean;
+  icon?: IconType;
+}
+
+interface Constellation {
+  id: string;
+  title: string;
+  color: string;
+  position: string;
+  alignment: string;
+  justify: string;
+  tags: Tag[];
+}
+
+const constellations: Constellation[] = [
   {
     id: "frontend",
     title: "FRONTEND SYSTEMS",

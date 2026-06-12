@@ -6,7 +6,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { AnimatedSection } from "@/components/animated-section";
 import { InteractiveContact } from "@/components/interactive-contact";
 import { SkillsSlider } from "@/components/skills-slider";
-import { projects, services, skillsSlider, socialLinks } from "@/lib/portfolio-data";
+import { projects, skillsSlider, socialLinks } from "@/lib/portfolio-data";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TypewriterText } from "@/components/typewriter-text";
