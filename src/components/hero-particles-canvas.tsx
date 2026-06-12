@@ -134,7 +134,8 @@ export function HeroParticlesCanvas() {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    const particleCount = 60;
+    // Reduce particle count on mobile for better performance
+    const particleCount = window.innerWidth < 768 ? 30 : 60;
     const connectionDistance = 120;
     const mouse = { x: -1000, y: -1000, active: false };
     let shockwaves: Shockwave[] = [];
@@ -142,13 +143,20 @@ export function HeroParticlesCanvas() {
     // Set canvas dimensions
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
+      
+      // Avoid re-initializing if only the height changed slightly (e.g. mobile URL bar hiding on scroll)
+      const isSignificantResize = Math.abs(canvas.width - rect.width) > 50 || particles.length === 0;
+      
       canvas.width = rect.width;
       canvas.height = rect.height;
 
-      // Re-initialize particles
-      particles = [];
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle(canvas.width, canvas.height));
+      // Only re-initialize particles if it's a significant width change or first load
+      // This prevents massive stuttering when scrolling on mobile browsers
+      if (isSignificantResize) {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle(canvas.width, canvas.height));
+        }
       }
     };
 

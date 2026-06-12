@@ -330,56 +330,132 @@ export default function Home() {
         </section>
 
         <AnimatedSection className="section-container mt-32 relative">
-          <div className="absolute -left-32 top-0 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px] dark:bg-indigo-500/20" />
-          
-          <div className="relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
-            <div className="order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
-                About Me
+          {/* Header Area */}
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              <span className="text-slate-900 dark:text-white">About</span> <span className="text-blue-500">Me</span>
+              {/* Subtle glowing underline effect */}
+              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
+            </h2>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+              This website was built in just 2 days. Imagine what&apos;s possible with more time...
+            </p>
+          </div>
+
+          <div className="relative grid gap-8 lg:gap-8 lg:grid-cols-[0.8fr_1.2fr] items-stretch">
+            {/* Left Column: Portrait Card */}
+            <div className="relative group/portrait w-full aspect-[4/5] lg:aspect-auto min-h-[400px] lg:min-h-[500px] rounded-[2rem] overflow-hidden border border-slate-800 bg-[#0d1117] shadow-2xl">
+              {/* Corner brackets */}
+              <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-slate-600/50 z-20" />
+              <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-slate-600/50 z-20" />
+              <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-slate-600/50 z-20" />
+              <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-slate-600/50 z-20" />
+              
+              {/* Systems Online Tag */}
+              <div className="absolute top-1/2 -translate-y-1/2 -left-2 z-20 flex items-center gap-2 bg-slate-800/80 backdrop-blur-md border border-slate-700 px-3 py-2 rounded-lg text-emerald-400 text-xs font-mono font-bold shadow-lg">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                </svg>
+                Systems<br/>Online
               </div>
-              <h2 className="mt-6 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl leading-tight dark:text-white">
-                Building where <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">clean architecture</span> meets practical product impact.
-              </h2>
-              <div className="mt-8 space-y-6 text-lg text-slate-600 dark:text-slate-300">
-                <p className="leading-relaxed">
-                  I&apos;m a Full Stack Engineer with strong experience designing and developing scalable,
-                  high-performance web applications using Python (Django), Node.js, and .NET.
-                </p>
-                <p className="leading-relaxed">
-                  I enjoy robust backend-frontend integrations, secure APIs, CI/CD-driven delivery,
-                  and AI-enhanced applications that solve real user problems.
-                </p>
+
+              {/* Background Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-blue-500/10 mix-blend-overlay z-10" />
+
+              <Image 
+                src="/projects/Me.png" 
+                alt="Uzair Ahmad" 
+                fill 
+                sizes="(max-width: 1024px) 100vw, 40vw" 
+                className="object-cover object-bottom z-0 filter contrast-[1.1] saturate-75" 
+                priority 
+              />
+
+              {/* Continuous Scanner Blur Effect - Fixed for performance using y (translateY) */}
+              <motion.div 
+                animate={{ y: ["-100%", "200%", "-100%"] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-0 left-0 right-0 h-[60%] backdrop-blur-md z-10 pointer-events-none flex flex-col justify-end"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, transparent, black 80%, transparent)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 80%, transparent)'
+                }}
+              >
+                {/* The bright scanner line attached to the bottom of the blur block */}
+                <div className="w-full h-[2px] bg-emerald-400/40 shadow-[0_0_20px_rgba(52,211,153,0.8)]" />
+              </motion.div>
+
+              {/* Bottom Info Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 pt-24 z-20 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-3 backdrop-blur-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">Available for hire</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-1">Uzair Ahmad</h3>
+                <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Global Remote
+                </div>
               </div>
             </div>
 
-            <div className="order-1 relative mx-auto w-full max-w-sm lg:order-2 lg:max-w-none">
-              <div className="group relative aspect-square w-full overflow-hidden rounded-3xl border border-slate-300 bg-white/50 backdrop-blur-sm transition-all hover:border-blue-500/30 hover:bg-white/80 dark:border-slate-700/50 dark:bg-slate-800/30 dark:hover:bg-slate-800/50">
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 transition-colors group-hover:text-blue-500 dark:text-slate-500 dark:group-hover:text-blue-400">
-                  <svg className="mb-4 h-12 w-12 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="text-sm font-medium tracking-widest uppercase">Your Image Here</span>
+            {/* Right Column: Bio Card */}
+            <div className="relative w-full rounded-[2rem] border border-slate-800 bg-[#0d1117] p-8 md:p-10 flex flex-col justify-between shadow-2xl">
+              <div>
+                {/* Top Row: Button */}
+                <div className="flex justify-end mb-8">
+                  <a href="/Resume.pdf" target="_blank" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/40 border border-slate-700/50 text-slate-300 text-[10px] font-bold hover:bg-slate-700 transition-colors uppercase tracking-wider">
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Load Full Profile
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
                 </div>
-                <Image src="/projects/Me.png" alt="Uzair Ahmad" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 384px, 448px" className="object-cover transition-transform duration-500 group-hover:scale-105" priority />
+
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+                  Architecting the <br />
+                  <span className="text-blue-500">Intelligent Web</span>
+                </h2>
+
+                <div className="space-y-6 text-slate-400 text-sm md:text-base leading-relaxed">
+                  <p>
+                    I am a <strong className="text-slate-200 font-semibold">Full Stack Developer</strong>, <strong className="text-slate-200 font-semibold">AI Specialist</strong>, and <strong className="text-slate-200 font-semibold">Designer</strong> focused on building the next generation of digital products. My work sits at the intersection of elegant code, thoughtful design, and neural automation.
+                  </p>
+                  <p>
+                    With extensive experience in <span className="text-red-400">Python</span> and <span className="text-blue-400">React</span> ecosystems, I don&apos;t just build applications—I engineer living systems that learn, adapt, and scale. From predictive algorithms to seamless user interfaces, I craft solutions that look stunning and feel magical.
+                  </p>
+                </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 -z-10 h-full w-full rounded-3xl border border-blue-500/20 bg-blue-50 dark:bg-blue-500/5" />
+
+              {/* Bottom Row: Languages */}
+              <div className="mt-12 pt-8 border-t border-slate-800/50 flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/30 border border-slate-700/50 text-[11px] font-medium text-slate-300">
+                  <span>🇬🇧</span> English <span className="text-slate-500">(Fluent)</span>
+                </div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/30 border border-slate-700/50 text-[11px] font-medium text-slate-300">
+                  <span>🇵🇰</span> Urdu <span className="text-slate-500">(Native)</span>
+                </div>
+              </div>
             </div>
           </div>
         </AnimatedSection>
 
         <section id="projects" ref={projectsContainerRef} className="section-container mt-40 relative scroll-mt-24">
-          <div className="mb-20 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
-                Featured Work
-              </div>
-              <h2 className="mt-6 text-4xl font-extrabold text-slate-900 md:text-5xl dark:text-white animate-fade-in">
-                Latest Works
-              </h2>
-            </div>
-            <span className="rounded-full bg-blue-50 px-4 py-1.5 text-sm font-semibold text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 border border-blue-200 dark:border-blue-500/20">
-              {projects.length} selected builds
-            </span>
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              <span className="text-slate-900 dark:text-white">Latest</span> <span className="text-blue-500">Works</span>
+              {/* Subtle glowing underline effect */}
+              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
+            </h2>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+              A collection of {projects.length} selected builds spanning full stack development, AI integration, and creative design.
+            </p>
           </div>
 
           {/* Timeline Container */}
@@ -449,12 +525,28 @@ export default function Home() {
                         style={{ backgroundColor: project.color.glow }}
                       />
 
-                      {/* Tooltip Popup on Hover */}
-                      <div className="absolute top-[16%] left-1/2 -translate-x-1/2 z-30 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:top-[8%] transition-all duration-300 pointer-events-none">
-                        <div className="relative bg-blue-600 dark:bg-blue-500 text-white dark:text-slate-950 font-bold px-4.5 py-2 text-sm rounded-xl shadow-lg shadow-blue-500/20 whitespace-nowrap">
-                          {project.name.split(" — ")[0]}
-                          {/* Caret */}
-                          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-blue-600 dark:bg-blue-500" />
+                      {/* Futuristic Tooltip Popup on Hover */}
+                      <div className="absolute top-[16%] left-1/2 -translate-x-1/2 z-30 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:top-[5%] transition-all duration-500 pointer-events-none">
+                        <div className={`relative flex items-center gap-2.5 px-4 py-2 rounded-sm border bg-white/95 dark:bg-[#09090b]/95 backdrop-blur-md shadow-2xl uppercase tracking-[0.2em] text-[10px] font-black ${project.color.border}`}>
+                          {/* Inner border for glass effect */}
+                          <div className="absolute inset-0 border border-white/40 dark:border-white/10 rounded-sm pointer-events-none" />
+                          
+                          {/* Blinking status dot */}
+                          <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${project.color.dot}`} />
+                          
+                          <span className={`text-slate-800 dark:text-slate-200`}>
+                            {project.name.split(" — ")[0]}
+                          </span>
+                          
+                          {/* Cyber corners */}
+                          <div className="absolute -top-[5px] -left-[5px] w-2 h-2 border-t border-l border-slate-400/60 dark:border-slate-500/60" />
+                          <div className="absolute -bottom-[5px] -right-[5px] w-2 h-2 border-b border-r border-slate-400/60 dark:border-slate-500/60" />
+                          
+                          {/* Ambient backdrop glow */}
+                          <div 
+                            className="absolute inset-0 -z-10 rounded-sm blur-xl opacity-60"
+                            style={{ backgroundColor: project.color.glow }}
+                          />
                         </div>
                       </div>
 
@@ -468,78 +560,74 @@ export default function Home() {
                       />
                     </motion.div>
 
-                    {/* Text Details Column — always below on mobile, alternates on desktop */}
+                    {/* Text Details Column — Interactive Text (No Card) */}
                     <motion.div
                       initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 0.8, ease: "easeOut" }}
-                      className={`flex flex-col p-8 md:p-10 rounded-3xl border bg-white/40 dark:bg-slate-900/30 backdrop-blur-md shadow-xl hover:shadow-2xl hover:bg-white/60 dark:hover:bg-slate-900/50 transition-all duration-500 order-2 ${isEven ? "lg:order-1" : "lg:order-2"} ${project.color.border}`}
+                      className={`flex flex-col justify-center order-2 ${isEven ? "lg:order-1 lg:pr-12" : "lg:order-2 lg:pl-12"}`}
                     >
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider border ${project.color.badge}`}>
-                          {project.tech[0]}
+                      <div className="flex items-center gap-3 mb-4 opacity-50 group-hover/row:opacity-100 transition-opacity duration-500">
+                        <span className={`text-xs font-bold uppercase tracking-widest ${project.color.text}`}>
+                          {project.tech[0]} / {project.tech[1] || "Project"}
                         </span>
                       </div>
                       
-                      <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight group-hover/row:text-blue-500 dark:group-hover/row:text-blue-400 transition-colors">
-                        {project.name}
+                      {/* Interactive Title */}
+                      <h3 className="text-4xl md:text-5xl lg:text-[4rem] font-black text-slate-300 dark:text-slate-800 tracking-tighter leading-none transition-colors duration-700 group-hover/row:text-slate-900 dark:group-hover/row:text-white cursor-default flex flex-wrap">
+                        {project.name.split("").map((char, i) => (
+                          <span 
+                            key={i} 
+                            className={`inline-block transition-transform duration-200 hover:-translate-y-2 hover:${project.color.text}`}
+                          >
+                            {char === " " ? "\u00A0" : char}
+                          </span>
+                        ))}
                       </h3>
                       
-                      <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-300 font-medium">
+                      <p className="mt-8 text-lg md:text-xl leading-relaxed text-slate-500 dark:text-slate-500 font-medium max-w-xl transition-colors duration-700 group-hover/row:text-slate-700 dark:group-hover/row:text-slate-300">
                         {project.summary}
                       </p>
                       
-                      <div className="mt-6 space-y-4 border-l-2 border-slate-200 dark:border-slate-800/80 pl-4 py-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                        <div>
-                          <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-1 flex items-center gap-1.5">
-                            <span className={`${project.color.text}`}>●</span> Problem
-                          </h4>
-                          <p className="text-slate-600 dark:text-slate-400">{project.problem}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-1 flex items-center gap-1.5">
-                            <span className={`${project.color.text}`}>●</span> Solution
-                          </h4>
-                          <p className="text-slate-600 dark:text-slate-400">{project.solution}</p>
-                        </div>
-                      </div>
-
-                      <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/60">
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {project.tech.map((t) => (
-                            <span 
-                              key={t} 
-                              className="rounded-lg bg-slate-100/80 dark:bg-slate-800/60 px-2.5 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300 border border-slate-200/40 dark:border-slate-700/40 transition-all hover:scale-105 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      {/* Hidden by default, reveals on hover */}
+                      <div className="mt-8 grid grid-rows-[0fr] opacity-0 group-hover/row:grid-rows-[1fr] group-hover/row:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                        <div className="overflow-hidden">
+                          <div className="flex flex-wrap gap-2 mb-8 pt-2">
+                            {project.tech.map((t) => (
+                              <span 
+                                key={t} 
+                                className="rounded-full bg-slate-100 dark:bg-slate-800/80 px-3 py-1 text-xs font-bold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 transition-colors hover:text-slate-900 dark:hover:text-white"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                          
+                          <div className="flex items-center gap-8 text-sm font-bold uppercase tracking-widest pb-2">
+                            <a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noreferrer"
+                              className={`inline-flex items-center gap-2 transition-colors ${project.color.text} hover:opacity-80 group/link`}
                             >
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                        
-                        <div className="flex items-center gap-6 text-sm font-bold">
-                          <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={`inline-flex items-center gap-2 transition-colors ${project.color.text} hover:opacity-80 group/link`}
-                          >
-                            Live Demo 
-                            <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          </a>
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors group/link"
-                          >
-                            GitHub 
-                            <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                               <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          </a>
+                              Live Demo 
+                              <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </a>
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors group/link"
+                            >
+                              GitHub 
+                              <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -552,11 +640,15 @@ export default function Home() {
         </section>
 
         <AnimatedSection id="skills" className="section-container mt-40">
-          <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
-              Toolkit
-            </div>
-            <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">Skills & Tech Stack</h2>
+          <div className="flex flex-col items-center justify-center text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              <span className="text-slate-900 dark:text-white">Skills &</span> <span className="text-blue-500">Tech Stack</span>
+              {/* Subtle glowing underline effect */}
+              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
+            </h2>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+              My toolkit for building high-performance, scalable web applications.
+            </p>
           </div>
           
           <div className="mt-16 w-screen relative left-1/2 -translate-x-1/2">
@@ -605,11 +697,15 @@ export default function Home() {
         </AnimatedSection>
 
         <AnimatedSection id="journey" className="section-container mt-40">
-          <div className="flex flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
-              Experience
-            </div>
-            <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl dark:text-white">My Journey</h2>
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              <span className="text-slate-900 dark:text-white">My</span> <span className="text-blue-500">Journey</span>
+              {/* Subtle glowing underline effect */}
+              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
+            </h2>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+              A timeline of my professional experience and educational background.
+            </p>
           </div>
 
           <JourneyTimeline />
@@ -629,18 +725,13 @@ export default function Home() {
         </AnimatedSection>
 
         <AnimatedSection id="services" className="section-container mt-40">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-blue-700 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
-              </span>
-              What I Can Do For You
-            </div>
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-white">
-              Freelance & Consulting Services
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              <span className="text-slate-900 dark:text-white">Freelance &</span> <span className="text-blue-500">Consulting</span>
+              {/* Subtle glowing underline effect */}
+              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
             </h2>
-            <p className="mx-auto mb-16 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
               Whether you need a full-stack web application from scratch or want to integrate modern AI capabilities into your existing product, I can help you build it.
             </p>
           </div>
@@ -666,15 +757,20 @@ export default function Home() {
         </AnimatedSection>
 
         <AnimatedSection id="contact" className="section-container mt-40 pb-32">
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+              <span className="text-slate-900 dark:text-white">Let&apos;s</span> <span className="text-blue-500">Connect</span>
+              {/* Subtle glowing underline effect */}
+              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
+            </h2>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+              Ready to bring your ideas to life? Fill out the form below or reach out directly.
+            </p>
+          </div>
+
           <div className="grid gap-12 lg:grid-cols-[1fr_400px]">
              <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
-                Let&apos;s Connect
-              </div>
-              <h2 className="mt-6 border-b border-slate-200 pb-8 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl dark:border-slate-700/50 dark:text-white">
-                Ready to bring your ideas to life?
-              </h2>
-              <div className="mt-10">
+              <div className="mt-2">
                 <ContactForm />
               </div>
             </div>

@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/custom-cursor";
-import { ChatBot } from "@/components/chat-bot";
 import { Footer } from "@/components/footer";
 import { Preloader } from "@/components/preloader";
 
@@ -93,7 +92,6 @@ export default function RootLayout({
           <CustomCursor />
           {children}
           <Footer />
-          <ChatBot />
         </ThemeProvider>
       </body>
     </html>
