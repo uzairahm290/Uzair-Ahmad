@@ -2,11 +2,11 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { AnimatedSection } from "@/components/animated-section";
 import { ContactForm } from "@/components/contact-form";
 import { SkillsSlider } from "@/components/skills-slider";
-import { journey, projects, skills, skillsSlider, socialLinks } from "@/lib/portfolio-data";
+import { projects, skills, skillsSlider, socialLinks } from "@/lib/portfolio-data";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TypewriterText } from "@/components/typewriter-text";
@@ -81,7 +81,7 @@ export default function Home() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left py-32"
+              className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left py-16 lg:py-32"
             >
                 <motion.div
                   initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
@@ -100,7 +100,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-                  className="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-7xl lg:text-8xl"
+                  className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-8xl"
                 >
                   Hi, I&apos;m{" "}
                   <motion.span 
@@ -140,12 +140,12 @@ export default function Home() {
                   initial={{ opacity: 0, y: 25 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, ease: "easeOut", delay: 0.58 }}
-                  className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4"
+                  className="mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto px-4 sm:px-0"
                 >
                   <MagneticButton>
                     <a
                       href="#projects"
-                      className="group relative inline-flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-semibold text-white transition-transform hover:scale-105 active:scale-95 dark:bg-white dark:text-slate-950"
+                      className="group relative w-full sm:w-auto inline-flex justify-center items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-semibold text-white transition-transform hover:scale-105 active:scale-95 dark:bg-white dark:text-slate-950"
                     >
                       Explore My Work
                       <svg
@@ -162,9 +162,9 @@ export default function Home() {
                   <MagneticButton>
                     <a
                       href="#contact"
-                      className="inline-flex rounded-full border border-slate-300 bg-white/50 px-8 py-3.5 text-base font-medium text-slate-700 backdrop-blur-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-200 dark:hover:bg-slate-700/50 dark:hover:text-white"
+                      className="w-full sm:w-auto inline-flex justify-center rounded-full border border-slate-300 bg-white/50 px-8 py-3.5 text-base font-medium text-slate-700 backdrop-blur-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-200 dark:hover:bg-slate-700/50 dark:hover:text-white"
                     >
-                      Let's Talk
+                      Let&apos;s Talk
                     </a>
                   </MagneticButton>
                 </motion.div>
@@ -344,12 +344,12 @@ export default function Home() {
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
                 About Me
               </div>
-              <h2 className="mt-6 text-3xl font-bold text-slate-900 md:text-5xl leading-tight dark:text-white">
+              <h2 className="mt-6 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl leading-tight dark:text-white">
                 Building where <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400">clean architecture</span> meets practical product impact.
               </h2>
               <div className="mt-8 space-y-6 text-lg text-slate-600 dark:text-slate-300">
                 <p className="leading-relaxed">
-                  I'm a Full Stack Engineer with strong experience designing and developing scalable,
+                  I&apos;m a Full Stack Engineer with strong experience designing and developing scalable,
                   high-performance web applications using Python (Django), Node.js, and .NET.
                 </p>
                 <p className="leading-relaxed">
@@ -401,7 +401,7 @@ export default function Home() {
             />
 
             {/* Project rows */}
-            <div className="space-y-20 lg:space-y-36">
+            <div className="space-y-16 lg:space-y-36">
               {projects.map((project, idx) => {
                 const isEven = idx % 2 === 1;
                 
@@ -639,9 +639,9 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-[1fr_400px]">
              <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-300">
-                Let's Connect
+                Let&apos;s Connect
               </div>
-              <h2 className="mt-6 border-b border-slate-200 pb-8 text-4xl font-bold text-slate-900 md:text-5xl dark:border-slate-700/50 dark:text-white">
+              <h2 className="mt-6 border-b border-slate-200 pb-8 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl dark:border-slate-700/50 dark:text-white">
                 Ready to bring your ideas to life?
               </h2>
               <div className="mt-10">

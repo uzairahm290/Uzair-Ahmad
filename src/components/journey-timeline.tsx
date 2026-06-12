@@ -29,7 +29,7 @@ export function JourneyTimeline() {
       />
 
       <div className="space-y-12">
-        {journey.map((event, index) => (
+        {journey.map((event) => (
           <div 
             key={event.title} 
             className="group relative flex flex-col gap-4 pl-12 md:flex-row md:items-start md:gap-12 md:pl-0"

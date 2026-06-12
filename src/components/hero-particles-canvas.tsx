@@ -3,6 +3,124 @@
 import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 
+class Shockwave {
+  x: number;
+  y: number;
+  radius: number;
+  maxRadius: number;
+  speed: number;
+  active: boolean;
+
+  constructor(x: number, y: number, maxRadius = 220) {
+    this.x = x;
+    this.y = y;
+    this.radius = 0;
+    this.maxRadius = maxRadius;
+    this.speed = 8;
+    this.active = true;
+  }
+
+  update() {
+    this.radius += this.speed;
+    if (this.radius >= this.maxRadius) {
+      this.active = false;
+    }
+  }
+}
+
+class Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  baseSpeedX: number;
+  baseSpeedY: number;
+
+  constructor(w: number, h: number) {
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.size = Math.random() * 1.5 + 1.5;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+    this.baseSpeedX = this.vx;
+    this.baseSpeedY = this.vy;
+  }
+
+  update(w: number, h: number, mouseX: number, mouseY: number, isMouseActive: boolean, shockwaves: Shockwave[]) {
+    // Apply normal velocity
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce on boundaries
+    if (this.x < 0 || this.x > w) this.vx *= -1;
+    if (this.y < 0 || this.y > h) this.vy *= -1;
+
+    // Ensure particles stay within canvas boundaries after bouncing
+    if (this.x < 0) this.x = 0;
+    if (this.x > w) this.x = w;
+    if (this.y < 0) this.y = 0;
+    if (this.y > h) this.y = h;
+
+    // Mouse attraction/gravitation
+    if (isMouseActive) {
+      const dx = mouseX - this.x;
+      const dy = mouseY - this.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const maxDistance = 150;
+
+      if (distance < maxDistance) {
+        // Apply gentle pull towards the cursor
+        const force = (maxDistance - distance) / maxDistance;
+        this.vx += (dx / distance) * force * 0.05;
+        this.vy += (dy / distance) * force * 0.05;
+
+        // Cap maximum speed under mouse influence
+        const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+        if (speed > 1.2) {
+          this.vx = (this.vx / speed) * 1.2;
+          this.vy = (this.vy / speed) * 1.2;
+        }
+      } else {
+        // Return to base speed gradually
+        this.vx += (this.baseSpeedX - this.vx) * 0.02;
+        this.vy += (this.baseSpeedY - this.vy) * 0.02;
+      }
+    } else {
+      // Return to base speed gradually
+      this.vx += (this.baseSpeedX - this.vx) * 0.02;
+      this.vy += (this.baseSpeedY - this.vy) * 0.02;
+    }
+
+    // Apply shockwaves
+    for (const shockwave of shockwaves) {
+      const dx = this.x - shockwave.x;
+      const dy = this.y - shockwave.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // If the particle is hit by the expanding shockwave front
+      const waveRadius = shockwave.radius;
+      const thickness = 40; // thickness of shockwave ring
+      
+      if (distance > waveRadius - thickness && distance < waveRadius) {
+        const force = (1 - (waveRadius / shockwave.maxRadius)) * 8; // strength decays as it expands
+        const angle = Math.atan2(dy, dx);
+        this.x += Math.cos(angle) * force;
+        this.y += Math.sin(angle) * force;
+        this.vx += Math.cos(angle) * force * 0.2;
+        this.vy += Math.sin(angle) * force * 0.2;
+      }
+    }
+  }
+
+  draw(context: CanvasRenderingContext2D, color: string) {
+    context.beginPath();
+    context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    context.fillStyle = color;
+    context.fill();
+  }
+}
+
 export function HeroParticlesCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
@@ -20,125 +138,6 @@ export function HeroParticlesCanvas() {
     const connectionDistance = 120;
     const mouse = { x: -1000, y: -1000, active: false };
     let shockwaves: Shockwave[] = [];
-
-    // Particle class definition
-    class Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      baseSpeedX: number;
-      baseSpeedY: number;
-
-      constructor(w: number, h: number) {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        this.size = Math.random() * 1.5 + 1.5;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.baseSpeedX = this.vx;
-        this.baseSpeedY = this.vy;
-      }
-
-      update(w: number, h: number, mouseX: number, mouseY: number, isMouseActive: boolean) {
-        // Apply normal velocity
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Bounce on boundaries
-        if (this.x < 0 || this.x > w) this.vx *= -1;
-        if (this.y < 0 || this.y > h) this.vy *= -1;
-
-        // Ensure particles stay within canvas boundaries after bouncing
-        if (this.x < 0) this.x = 0;
-        if (this.x > w) this.x = w;
-        if (this.y < 0) this.y = 0;
-        if (this.y > h) this.y = h;
-
-        // Mouse attraction/gravitation
-        if (isMouseActive) {
-          const dx = mouseX - this.x;
-          const dy = mouseY - this.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDistance = 150;
-
-          if (distance < maxDistance) {
-            // Apply gentle pull towards the cursor
-            const force = (maxDistance - distance) / maxDistance;
-            this.vx += (dx / distance) * force * 0.05;
-            this.vy += (dy / distance) * force * 0.05;
-
-            // Cap maximum speed under mouse influence
-            const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-            if (speed > 1.2) {
-              this.vx = (this.vx / speed) * 1.2;
-              this.vy = (this.vy / speed) * 1.2;
-            }
-          } else {
-            // Return to base speed gradually
-            this.vx += (this.baseSpeedX - this.vx) * 0.02;
-            this.vy += (this.baseSpeedY - this.vy) * 0.02;
-          }
-        } else {
-          // Return to base speed gradually
-          this.vx += (this.baseSpeedX - this.vx) * 0.02;
-          this.vy += (this.baseSpeedY - this.vy) * 0.02;
-        }
-
-        // Apply shockwaves
-        for (const shockwave of shockwaves) {
-          const dx = this.x - shockwave.x;
-          const dy = this.y - shockwave.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          // If the particle is hit by the expanding shockwave front
-          const waveRadius = shockwave.radius;
-          const thickness = 40; // thickness of shockwave ring
-          
-          if (distance > waveRadius - thickness && distance < waveRadius) {
-            const force = (1 - (waveRadius / shockwave.maxRadius)) * 8; // strength decays as it expands
-            const angle = Math.atan2(dy, dx);
-            this.x += Math.cos(angle) * force;
-            this.y += Math.sin(angle) * force;
-            this.vx += Math.cos(angle) * force * 0.2;
-            this.vy += Math.sin(angle) * force * 0.2;
-          }
-        }
-      }
-
-      draw(context: CanvasRenderingContext2D, color: string) {
-        context.beginPath();
-        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        context.fillStyle = color;
-        context.fill();
-      }
-    }
-
-    class Shockwave {
-      x: number;
-      y: number;
-      radius: number;
-      maxRadius: number;
-      speed: number;
-      active: boolean;
-
-      constructor(x: number, y: number, maxRadius = 220) {
-        this.x = x;
-        this.y = y;
-        this.radius = 0;
-        this.maxRadius = maxRadius;
-        this.speed = 8;
-        this.active = true;
-      }
-
-      update() {
-        this.radius += this.speed;
-        if (this.radius >= this.maxRadius) {
-          this.active = false;
-        }
-      }
-    }
 
     // Set canvas dimensions
     const resizeCanvas = () => {
@@ -206,7 +205,7 @@ export function HeroParticlesCanvas() {
 
       // Update and draw particles
       particles.forEach((p) => {
-        p.update(canvas.width, canvas.height, mouse.x, mouse.y, mouse.active);
+        p.update(canvas.width, canvas.height, mouse.x, mouse.y, mouse.active, shockwaves);
         p.draw(ctx, colors.particleColor);
       });
 
