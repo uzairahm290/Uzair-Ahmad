@@ -83,18 +83,6 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left py-16 lg:py-32"
             >
-                <motion.div
-                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.05 }}
-                  className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-700 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-300"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 dark:bg-blue-400 opacity-75"></span>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-500"></span>
-                  </span>
-                  Available for new opportunities
-                </motion.div>
 
                 <motion.h1
                   initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
