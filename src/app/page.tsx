@@ -644,7 +644,7 @@ export default function Home() {
             <SkillsConstellation />
           </div>
 
-          <div className="mt-16 w-screen relative left-1/2 -translate-x-1/2">
+          <div className="mt-16">
             <SkillsSlider skills={skillsSlider} />
           </div>
         </AnimatedSection>
@@ -655,20 +655,7 @@ export default function Home() {
           <GithubActivity />
         </AnimatedSection>
 
-        <AnimatedSection id="journey" className="section-container mt-40">
-          <div className="flex flex-col items-center justify-center text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-              <span className="text-slate-900 dark:text-white">My</span> <span className="text-blue-500">Journey</span>
-              {/* Subtle glowing underline effect */}
-              <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
-            </h2>
-            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              A timeline of my professional experience and educational background.
-            </p>
-          </div>
-
-          <JourneyTimeline />
-        </AnimatedSection>
+        <JourneyTimeline />
 
         <AnimatedSection className="section-container mt-32">
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/50 p-8 md:p-12 text-center backdrop-blur-sm transition-colors hover:border-blue-500/30 dark:border-slate-700 dark:bg-slate-800/50">

@@ -240,20 +240,20 @@ export const skills = {
 };
 
 export const skillsSlider = [
-  "React",
-  "Next.js",
-  "JavaScript",
-  "TypeScript",
-  "Python",
-  "Django",
-  "Node.js",
-  "Express",
-  ".NET",
-  "PostgreSQL",
-  "MongoDB",
-  "Docker",
-  "Git",
-  "Tailwind CSS",
+  { name: "React", exp: "3+ Years" },
+  { name: "Next.js", exp: "2+ Years" },
+  { name: "JavaScript", exp: "4+ Years" },
+  { name: "TypeScript", exp: "2+ Years" },
+  { name: "Python", exp: "3+ Years" },
+  { name: "Django", exp: "3+ Years" },
+  { name: "Node.js", exp: "2+ Years" },
+  { name: "Express", exp: "2+ Years" },
+  { name: ".NET", exp: "1+ Years" },
+  { name: "PostgreSQL", exp: "3+ Years" },
+  { name: "MongoDB", exp: "2+ Years" },
+  { name: "Docker", exp: "2+ Years" },
+  { name: "Git", exp: "4+ Years" },
+  { name: "Tailwind CSS", exp: "4+ Years" },
 ] as const;
 
 export const journey = [

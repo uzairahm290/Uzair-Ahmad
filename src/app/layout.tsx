@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/custom-cursor";
+import { RoamingPython } from "@/components/roaming-python";
 import { Footer } from "@/components/footer";
 import { Preloader } from "@/components/preloader";
 import { ScrollToTop } from "@/components/scroll-to-top";
@@ -91,6 +92,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Preloader />
           <CustomCursor />
+          <RoamingPython />
           {children}
           <Footer />
           <ScrollToTop />

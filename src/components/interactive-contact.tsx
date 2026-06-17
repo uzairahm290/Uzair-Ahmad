@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ContactForm } from "@/components/contact-form";
+import { CopyableEmail } from "@/components/copyable-email";
 import { socialLinks } from "@/lib/portfolio-data";
 import { FiMail } from "react-icons/fi";
 
@@ -85,16 +85,20 @@ export function InteractiveContact() {
           </div>
         </motion.div>
 
-        {/* Right Side: Contact Form */}
+        {/* Right Side: Copyable Email */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col justify-center h-full"
         >
-          <div className="bg-white dark:bg-slate-800/50 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-700/50 shadow-xl shadow-slate-200/20 dark:shadow-none">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Send a Message</h3>
-            <ContactForm />
+          <div className="bg-white dark:bg-slate-800/50 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-700/50 shadow-xl shadow-slate-200/20 dark:shadow-none flex flex-col justify-center h-full">
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Direct Contact</h3>
+            <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 font-medium mb-8">
+              Skip the forms. Click below to copy my email address and reach out directly from your preferred email client.
+            </p>
+            <CopyableEmail />
           </div>
         </motion.div>
 
