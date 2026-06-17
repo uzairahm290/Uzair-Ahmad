@@ -50,7 +50,7 @@ export function MarqueeContact() {
           {/* First Block */}
           <div className="flex whitespace-nowrap">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[100px] md:text-[180px] lg:text-[220px] font-black text-slate-800/80 uppercase tracking-tighter px-4 select-none">
+              <span key={i} className="text-[80px] sm:text-[100px] md:text-[180px] lg:text-[220px] font-black text-slate-200 dark:text-slate-800/80 uppercase tracking-tighter px-4 select-none">
                 {marqueeText}
               </span>
             ))}
@@ -58,7 +58,7 @@ export function MarqueeContact() {
           {/* Second Duplicate Block for Seamless Loop */}
           <div className="flex whitespace-nowrap">
             {[1, 2, 3, 4].map((i) => (
-              <span key={i} className="text-[100px] md:text-[180px] lg:text-[220px] font-black text-slate-800/80 uppercase tracking-tighter px-4 select-none">
+              <span key={i} className="text-[80px] sm:text-[100px] md:text-[180px] lg:text-[220px] font-black text-slate-200 dark:text-slate-800/80 uppercase tracking-tighter px-4 select-none">
                 {marqueeText}
               </span>
             ))}
@@ -72,7 +72,7 @@ export function MarqueeContact() {
           isActive ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
         }`}
       >
-        <div className="px-6 py-3 rounded-full bg-slate-900/60 backdrop-blur-md border border-slate-700/50 text-slate-300 text-sm font-medium tracking-wide flex items-center gap-3 shadow-xl">
+        <div className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-white/80 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-medium tracking-wide flex items-center gap-3 shadow-xl">
           <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
           Hover or tap to initiate contact
         </div>
@@ -86,26 +86,26 @@ export function MarqueeContact() {
             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.9, y: 20, filter: "blur(5px)" }}
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
-            className="relative z-20 w-full max-w-xl mx-4 cursor-default"
+            className="relative z-20 w-[92%] sm:w-full max-w-xl mx-auto cursor-default"
             onClick={(e) => e.stopPropagation()} // Prevent clicking the card from closing it
           >
             {/* Deep glow behind the card */}
-            <div className="absolute -inset-10 bg-blue-600/20 rounded-[3rem] blur-3xl animate-pulse pointer-events-none" />
+            <div className="absolute -inset-6 sm:-inset-10 bg-blue-600/20 rounded-[3rem] blur-2xl sm:blur-3xl animate-pulse pointer-events-none" />
             
             {/* The Card */}
-            <div className="relative p-8 md:p-12 rounded-[2.5rem] bg-slate-900/80 backdrop-blur-3xl border border-slate-700/50 shadow-[0_0_40px_rgba(0,0,0,0.8)] flex flex-col items-center text-center">
+            <div className="relative p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] bg-white/90 dark:bg-slate-900/80 backdrop-blur-3xl border border-slate-200 dark:border-slate-700/50 shadow-2xl dark:shadow-[0_0_40px_rgba(0,0,0,0.8)] flex flex-col items-center text-center">
               
-              <h3 className="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight">Let&apos;s Connect</h3>
-              <p className="text-slate-400 mb-10 font-medium max-w-sm">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 sm:mb-3 tracking-tight">Let&apos;s Connect</h3>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 font-medium max-w-sm">
                 Ready to architect the next intelligent system? Reach out below.
               </p>
               
-              <div className="w-full mb-10">
+              <div className="w-full mb-8 sm:mb-10">
                 <CopyableEmail />
               </div>
 
               {/* Social Icons row */}
-              <div className="flex items-center gap-4 sm:gap-6">
+              <div className="flex items-center gap-3 sm:gap-6">
                 {socials.map((social, idx) => {
                   const Icon = social.icon;
                   return (
@@ -114,13 +114,13 @@ export function MarqueeContact() {
                       href={social.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-950/50 border border-slate-700/50 hover:border-blue-500 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300"
+                      className="group flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-700/50 hover:border-blue-500 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300"
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15 + idx * 0.05, type: "spring" }}
                       title={social.name}
                     >
-                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400 group-hover:text-blue-400 transition-colors" />
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-slate-500 dark:text-slate-400 group-hover:text-blue-500 transition-colors" />
                     </motion.a>
                   );
                 })}
