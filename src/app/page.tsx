@@ -461,7 +461,7 @@ export default function Home() {
             />
 
             {/* Project rows */}
-            <div className="space-y-16 lg:space-y-36">
+            <div className="space-y-10 lg:space-y-36">
               {projects.map((project, idx) => {
                 const isEven = idx % 2 === 1;
                 
@@ -582,9 +582,9 @@ export default function Home() {
                       </p>
                       
                       {/* Hidden by default, reveals on hover */}
-                      <div className="mt-8 grid grid-rows-[0fr] opacity-0 group-hover/row:grid-rows-[1fr] group-hover/row:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                      <div className="grid grid-rows-[0fr] opacity-0 group-hover/row:grid-rows-[1fr] group-hover/row:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
                         <div className="overflow-hidden">
-                          <div className="flex flex-wrap gap-2 mb-8 pt-2">
+                          <div className="flex flex-wrap gap-2 mb-8 pt-8">
                             {project.tech.map((t) => (
                               <span 
                                 key={t} 

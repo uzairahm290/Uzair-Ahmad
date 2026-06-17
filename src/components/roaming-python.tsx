@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 interface Segment {
@@ -11,6 +11,15 @@ interface Segment {
 export function RoamingPython() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { resolvedTheme } = useTheme();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Safely check for mobile on client side to avoid hydration mismatch
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Keep state in refs for fast rendering without React re-renders
   const state = useRef({
@@ -34,6 +43,8 @@ export function RoamingPython() {
   });
 
   useEffect(() => {
+    if (isMobile) return;
+
     state.current.lastActiveTime = Date.now();
     state.current.targetChangeTime = Date.now();
     // Populate initial segments randomly on screen
@@ -67,9 +78,11 @@ export function RoamingPython() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
     };
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -353,11 +366,9 @@ export function RoamingPython() {
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationId);
     };
-  }, [resolvedTheme]);
+  }, [resolvedTheme, isMobile]);
 
-  if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
-    return null; // Don't render on mobile screens
-  }
+  if (isMobile) return null;
 
   return (
     <canvas
