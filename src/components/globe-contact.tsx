@@ -1,5 +1,5 @@
 "use client";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 import { motion } from "framer-motion";
@@ -38,14 +38,14 @@ export function GlobeContact() {
         { location: [51.5074, -0.1278], size: 0.05 }, // London
         { location: [35.6762, 139.6503], size: 0.05 }, // Tokyo
       ],
-      onRender: (state) => {
+      onRender: (state: Record<string, any>) => {
         // Called on every animation frame.
         if (!pointerInteracting.current) {
           phi += 0.005;
         }
         state.phi = phi + pointerInteractionMovement.current;
       }
-    });
+    } as any);
 
     return () => {
       globe.destroy();
