@@ -11,10 +11,10 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
   const items = [...skills, ...skills, ...skills, ...skills];
 
   return (
-    <div className="py-8 overflow-hidden select-none">
+    <div className="pt-16 pb-8 overflow-hidden select-none">
       <div className="relative">
         {/* Track */}
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+        <div className="flex w-max animate-marquee">
           {items.map((skill, i) => {
             const Icon = skillIcons[skill.name];
             return (
@@ -30,7 +30,7 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
                 </p>
 
                 {/* Hover Tooltip for Experience */}
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 scale-95 pointer-events-none transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 group-hover:-top-10 z-20">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 scale-95 pointer-events-none transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 group-hover:-top-12 z-20">
                   <div className="relative bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap">
                     {skill.exp}
                     {/* Downward Arrow */}
@@ -47,6 +47,9 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
         .animate-marquee {
           animation: marquee 55s linear infinite;
           will-change: transform;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
         }
         @keyframes marquee {
           0%   { transform: translateX(0); }

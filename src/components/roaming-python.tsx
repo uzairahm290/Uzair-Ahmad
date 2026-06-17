@@ -48,23 +48,25 @@ export function RoamingPython() {
     state.current.lastActiveTime = Date.now();
     state.current.targetChangeTime = Date.now();
     // Populate initial segments randomly on screen
+    const width = document.documentElement.scrollWidth;
+    const height = document.documentElement.scrollHeight;
     const segments: Segment[] = [];
     const segmentCount = 18;
-    const startX = Math.random() * window.innerWidth;
-    const startY = Math.random() * window.innerHeight;
+    const startX = Math.random() * width;
+    const startY = Math.random() * height;
     for (let i = 0; i < segmentCount; i++) {
       segments.push({ x: startX, y: startY });
     }
     state.current.segments = segments;
     state.current.target = {
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
+      x: Math.random() * width,
+      y: Math.random() * height,
     };
     state.current.angle = Math.random() * Math.PI * 2;
 
     const handleMouseMove = (e: MouseEvent) => {
       state.current.lastActiveTime = Date.now();
-      state.current.mousePos = { x: e.clientX, y: e.clientY };
+      state.current.mousePos = { x: e.pageX, y: e.pageY };
     };
 
     const handleMouseDown = () => {
@@ -92,8 +94,12 @@ export function RoamingPython() {
     let animationId: number;
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const width = document.documentElement.scrollWidth;
+      const height = document.documentElement.scrollHeight;
+      canvas.width = width;
+      canvas.height = height;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
     };
 
     resizeCanvas();
@@ -134,9 +140,11 @@ export function RoamingPython() {
             y: head.y + Math.sin(fleeAngle) * 300,
           };
           
-          // Keep target on screen
-          s.target.x = Math.max(50, Math.min(window.innerWidth - 50, s.target.x));
-          s.target.y = Math.max(50, Math.min(window.innerHeight - 50, s.target.y));
+          // Keep target on screen (full document bounds)
+          const width = document.documentElement.scrollWidth;
+          const height = document.documentElement.scrollHeight;
+          s.target.x = Math.max(50, Math.min(width - 50, s.target.x));
+          s.target.y = Math.max(50, Math.min(height - 50, s.target.y));
         } else {
           // Decays speed back to normal
           if (s.startled && now - s.startledTime > 1500) {
@@ -160,24 +168,26 @@ export function RoamingPython() {
             s.isSleeping = true;
             s.isHiding = false;
 
+            const width = document.documentElement.scrollWidth;
+            const height = document.documentElement.scrollHeight;
             const spawnSide = Math.floor(Math.random() * 4);
             let sx = 0, sy = 0;
             if (spawnSide === 0) {
-              sx = -50; sy = Math.random() * window.innerHeight;
+              sx = -50; sy = Math.random() * height;
             } else if (spawnSide === 1) {
-              sx = window.innerWidth + 50; sy = Math.random() * window.innerHeight;
+              sx = width + 50; sy = Math.random() * height;
             } else if (spawnSide === 2) {
-              sx = Math.random() * window.innerWidth; sy = -50;
+              sx = Math.random() * width; sy = -50;
             } else {
-              sx = Math.random() * window.innerWidth; sy = window.innerHeight + 50;
+              sx = Math.random() * width; sy = height + 50;
             }
             s.segments.forEach((seg) => {
               seg.x = sx;
               seg.y = sy;
             });
             s.target = {
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * width,
+              y: Math.random() * height,
             };
             s.angle = Math.atan2(s.target.y - sy, s.target.x - sx);
           }
@@ -194,9 +204,11 @@ export function RoamingPython() {
         // or triggering a fallback if the snake has chased the same target for over 6 seconds
         const timeChasing = now - s.targetChangeTime;
         if (distTarget < 40 || timeChasing > 6000) {
+          const width = document.documentElement.scrollWidth;
+          const height = document.documentElement.scrollHeight;
           s.target = {
-            x: 50 + Math.random() * (window.innerWidth - 100),
-            y: 50 + Math.random() * (window.innerHeight - 100),
+            x: 50 + Math.random() * (width - 100),
+            y: 50 + Math.random() * (height - 100),
           };
           s.targetChangeTime = now;
         }
@@ -373,7 +385,7 @@ export function RoamingPython() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-[9997] hidden md:block"
+      className="pointer-events-none absolute top-0 left-0 z-[9997] hidden md:block"
     />
   );
 }

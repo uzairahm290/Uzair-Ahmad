@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { AnimatedSection } from "@/components/animated-section";
-import { InteractiveContact } from "@/components/interactive-contact";
+import { MarqueeContact } from "@/components/marquee-contact";
 import { SkillsSlider } from "@/components/skills-slider";
 import { projects, skillsSlider, socialLinks } from "@/lib/portfolio-data";
 
@@ -416,10 +416,10 @@ export default function Home() {
 
                 <div className="space-y-6 text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
                   <p>
-                    I am a <strong className="text-slate-900 dark:text-slate-200 font-semibold">Full Stack Developer</strong>, <strong className="text-slate-900 dark:text-slate-200 font-semibold">AI Specialist</strong>, and <strong className="text-slate-900 dark:text-slate-200 font-semibold">Designer</strong> focused on building the next generation of digital products. My work sits at the intersection of elegant code, thoughtful design, and neural automation.
+                    I am a <strong className="text-slate-900 dark:text-slate-200 font-semibold">Full Stack Engineer</strong> and <strong className="text-slate-900 dark:text-slate-200 font-semibold">Cybersecurity Enthusiast</strong> dedicated to building secure, scalable, and high-performance digital products. My expertise bridges the gap between elegant frontend interfaces using <span className="text-blue-500 dark:text-blue-400 font-medium">React/Next.js</span> and robust backend architectures powered by <span className="text-emerald-500 dark:text-emerald-400 font-medium">Python</span>, Node.js, and .NET.
                   </p>
                   <p>
-                    With extensive experience in <span className="text-red-500 dark:text-red-400 font-medium">Python</span> and <span className="text-blue-500 dark:text-blue-400 font-medium">React</span> ecosystems, I don&apos;t just build applications—I engineer living systems that learn, adapt, and scale. From predictive algorithms to seamless user interfaces, I craft solutions that look stunning and feel magical.
+                    Beyond standard web development, my background in <span className="text-red-500 dark:text-red-400 font-medium">Blue Teaming</span> and competitive CTFs (Capture The Flag) allows me to engineer systems with security-first design principles. Whether integrating complex AI capabilities or optimizing API response times, I build applications that are as fortified as they are beautiful.
                   </p>
                 </div>
               </div>
@@ -672,8 +672,8 @@ export default function Home() {
 
         <ServicesScroll />
 
-        <AnimatedSection id="contact" className="section-container mt-20 pb-16 relative z-10 px-4 md:px-8">
-          <InteractiveContact />
+        <AnimatedSection id="contact" className="section-container mt-24 lg:mt-40 mb-20 lg:mb-32">
+          <MarqueeContact />
         </AnimatedSection>
       </main>
     </div>
