@@ -7,16 +7,20 @@ type SkillsSliderProps = {
 };
 
 export function SkillsSlider({ skills }: SkillsSliderProps) {
+  // 4 copies — animate -50% so first half === second half at reset point (seamless)
+  const items = [...skills, ...skills, ...skills, ...skills];
+
   return (
-    <div className="py-8 select-none">
-      <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-12 md:gap-x-12">
-          {skills.map((skill, i) => {
+    <div className="py-8 overflow-hidden select-none">
+      <div className="relative">
+        {/* Track */}
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          {items.map((skill, i) => {
             const Icon = skillIcons[skill.name];
             return (
               <div
                 key={`${skill.name}-${i}`}
-                className="group relative flex flex-col items-center gap-3 cursor-default"
+                className="group relative flex flex-shrink-0 flex-col items-center gap-3 px-7 cursor-default"
               >
                 <div className="flex h-14 w-14 items-center justify-center text-slate-400 transition-all duration-300 group-hover:scale-110 group-hover:text-blue-500 dark:text-slate-500 dark:group-hover:text-blue-400">
                   {Icon ? <Icon size={32} /> : null}
@@ -38,6 +42,17 @@ export function SkillsSlider({ skills }: SkillsSliderProps) {
           })}
         </div>
       </div>
+
+      <style>{`
+        .animate-marquee {
+          animation: marquee 55s linear infinite;
+          will-change: transform;
+        }
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </div>
   );
 }

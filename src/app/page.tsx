@@ -644,7 +644,7 @@ export default function Home() {
             <SkillsConstellation />
           </div>
 
-          <div className="mt-16">
+          <div className="mt-16 w-screen relative left-1/2 -translate-x-1/2">
             <SkillsSlider skills={skillsSlider} />
           </div>
         </AnimatedSection>
