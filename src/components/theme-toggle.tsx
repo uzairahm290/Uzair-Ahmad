@@ -3,13 +3,21 @@
 import * as React from "react";
 import { useTheme } from "next-themes";
 
+const emptySubscribe = () => () => {};
+
+// Server has no notion of "mounted"; useSyncExternalStore is the sanctioned
+// way to read that client/server-only truth without an effect+setState render.
+function useMounted() {
+  return React.useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+}
+
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   if (!mounted) {
     return <div className="h-9 w-9" />; // Placeholder to avoid layout shift
