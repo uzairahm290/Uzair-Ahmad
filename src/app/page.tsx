@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { AnimatedSection } from "@/components/animated-section";
 import { MarqueeContact } from "@/components/marquee-contact";
 import { SkillsSlider } from "@/components/skills-slider";
@@ -15,11 +15,13 @@ import { JourneyTimeline } from "@/components/journey-timeline";
 import { SkillsConstellation } from "@/components/skills-constellation";
 import { ServicesScroll } from "@/components/services-scroll";
 import { MagneticButton } from "@/components/magnetic-button";
-import { HeroParticlesCanvas } from "@/components/hero-particles-canvas";
 import { GithubActivity } from "@/components/github-activity";
-import { CircularStamp } from "@/components/circular-stamp";
+import { HeroBlueprintField, SystemSchematic } from "@/components/hero-blueprint";
+
+const navItems = ["Projects", "Skills", "Journey", "Services", "Contact"];
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const projectsContainerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: projectsContainerRef,
@@ -48,10 +50,10 @@ export default function Home() {
             UZ.
           </a>
           <ul className="hidden items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300 md:flex z-10">
-            {["Projects", "Skills", "Journey", "Services", "Contact"].map((item) => (
+            {navItems.map((item) => (
               <li key={item}>
-                <a 
-                  href={`#${item.toLowerCase()}`} 
+                <a
+                  href={`#${item.toLowerCase()}`}
                   className="transition-colors hover:text-blue-600 dark:hover:text-blue-400"
                 >
                   {item}
@@ -59,8 +61,30 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-4 z-10">
+          <div className="flex items-center gap-3 z-10 md:gap-4">
             <ThemeToggle />
+            <button
+              onClick={() => setIsMobileMenuOpen((v) => !v)}
+              className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-100 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-800 md:hidden"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <motion.span
+                animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 0 : -4 }}
+                transition={{ duration: 0.2 }}
+                className="absolute h-[1.5px] w-4 rounded-full bg-current"
+              />
+              <motion.span
+                animate={{ opacity: isMobileMenuOpen ? 0 : 1 }}
+                transition={{ duration: 0.15 }}
+                className="absolute h-[1.5px] w-4 rounded-full bg-current"
+              />
+              <motion.span
+                animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? 0 : 4 }}
+                transition={{ duration: 0.2 }}
+                className="absolute h-[1.5px] w-4 rounded-full bg-current"
+              />
+            </button>
             <MagneticButton>
               <a
                 href={socialLinks.resume}
@@ -71,263 +95,202 @@ export default function Home() {
             </MagneticButton>
           </div>
         </motion.nav>
+
+        {/* Mobile nav drawer */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <>
+              <motion.button
+                aria-label="Close menu"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="fixed inset-0 z-40 bg-slate-950/40 backdrop-blur-sm md:hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.div
+                initial={{ opacity: 0, y: -12, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -12, scale: 0.98 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="absolute inset-x-4 top-full z-50 mt-3 overflow-hidden rounded-3xl border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/95 md:hidden"
+              >
+                <ul className="flex flex-col divide-y divide-slate-100 dark:divide-slate-800/80">
+                  {navItems.map((item) => (
+                    <li key={item}>
+                      <a
+                        href={`#${item.toLowerCase()}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center justify-between rounded-2xl px-4 py-3.5 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-blue-600 dark:text-slate-200 dark:hover:bg-slate-800/60 dark:hover:text-blue-400"
+                      >
+                        {item}
+                        <span className="text-slate-300 dark:text-slate-600">&rarr;</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </header>
 
       <main className="relative z-10 pt-20 md:pt-24">
         <section className="relative min-h-screen overflow-hidden">
-          {/* Dynamic Interactive Node Background Canvas */}
-          <HeroParticlesCanvas />
+          <HeroBlueprintField />
 
-          <div className="section-container relative z-20 min-h-screen flex items-center">
-            {/* Left Column: Hero Content */}
+          <div className="section-container relative z-20 flex min-h-screen flex-col items-center justify-center gap-14 py-28 lg:flex-row lg:justify-between lg:gap-10 lg:py-20">
+
+            {/* Identity block */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left py-8 md:py-16 lg:py-32"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="flex w-full max-w-xl flex-col items-center text-center lg:w-[54%] lg:items-start lg:text-left"
             >
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-[#33455C]/70 dark:text-[#9FB4CC]/70"
+              >
+                <span className="h-px w-8 bg-[#33455C]/40 dark:bg-[#9FB4CC]/40" />
+                Full Stack Engineer &mdash; Lahore, PK
+              </motion.div>
 
-                <motion.h1
-                  initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-                  className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-6xl lg:text-8xl"
-                >
-                  Hi, I&apos;m{" "}
-                  <motion.span 
-                    className="inline-block bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-indigo-400 dark:to-blue-500 cursor-default"
-                    whileHover={{ scale: 1.05, rotate: -1 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ 
-                      type: "spring",
-                      stiffness: 140,
-                      damping: 12,
-                      delay: 0.35
-                    }}
-                  >
-                    Uzair Ahmad
-                  </motion.span>
-                </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 26 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
+                className="font-[family-name:var(--font-fraunces)] text-[16vw] font-semibold leading-[0.9] tracking-tight text-[#101E33] sm:text-7xl md:text-[6rem] lg:text-[5.25rem] xl:text-[6rem] dark:text-[#F3F6FA]"
+              >
+                Uzair
+                <br />
+                <span className="italic text-[#101E33]/65 dark:text-[#F3F6FA]/65">Ahmad</span>
+              </motion.h1>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
-                >
-                  <TypewriterText 
-                    className="mt-4 md:mt-8 max-w-1xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 lg:text-2xl flex justify-center lg:justify-start items-center min-h-[60px] md:min-h-[80px] text-center lg:text-left"
-                    text={[
-                      "A Full Stack Engineer crafting scalable AI-powered products",
-                      "Building immersive web experiences with modern technologies",
-                      "Transforming ideas into robust digital solutions"
-                    ]}
-                    speed={50}
-                  />
-                </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+              >
+                <TypewriterText
+                  className="mt-6 flex min-h-[56px] max-w-md items-center justify-center text-base leading-relaxed text-[#46566B] md:text-lg lg:justify-start dark:text-[#9FB4CC]"
+                  text={[
+                    "A Full Stack Engineer crafting scalable AI-powered products",
+                    "Building immersive web experiences with modern technologies",
+                    "Transforming ideas into robust digital solutions",
+                  ]}
+                  speed={50}
+                />
+              </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, ease: "easeOut", delay: 0.58 }}
-                  className="mt-6 md:mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4 w-full sm:w-auto px-4 sm:px-0"
-                >
-                  <MagneticButton>
-                    <a
-                      href="#projects"
-                      className="group relative w-full sm:w-auto inline-flex justify-center items-center gap-2 rounded-full bg-slate-900 px-8 py-3.5 text-base font-semibold text-white transition-transform hover:scale-105 active:scale-95 dark:bg-white dark:text-slate-950"
-                    >
-                      Explore My Work
-                      <svg
-                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </a>
-                  </MagneticButton>
-                  <MagneticButton>
-                    <a
-                      href="#contact"
-                      className="w-full sm:w-auto inline-flex justify-center rounded-full border border-slate-300 bg-white/50 px-8 py-3.5 text-base font-medium text-slate-700 backdrop-blur-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-200 dark:hover:bg-slate-700/50 dark:hover:text-white"
-                    >
-                      Let&apos;s Talk
-                    </a>
-                  </MagneticButton>
-                </motion.div>
+              {/* Spec sheet */}
+              <motion.dl
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.55 }}
+                className="mx-auto mt-9 grid w-full max-w-sm gap-y-2.5 font-mono text-[12.5px] lg:mx-0"
+              >
+                {[
+                  { k: "EXPERIENCE", v: "03 YRS" },
+                  { k: "SHIPPED", v: "20+ BUILDS" },
+                  { k: "STACK", v: "15 TOOLS" },
+                ].map((row) => (
+                  <div key={row.k} className="flex items-baseline gap-2">
+                    <dt className="shrink-0 tracking-[0.15em] text-[#101E33]/70 dark:text-[#E7EEF6]/70">{row.k}</dt>
+                    <span className="h-0 flex-1 border-b border-dotted border-[#33455C]/30 dark:border-[#9FB4CC]/30" />
+                    <dd className="shrink-0 font-semibold tracking-wide text-[#101E33] dark:text-[#F3F6FA]">{row.v}</dd>
+                  </div>
+                ))}
+              </motion.dl>
 
-                {/* Stats — inline separator style */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.72 }}
-                  className="mt-6 md:mt-10 flex items-center justify-center lg:justify-start gap-0 scale-90 md:scale-100 origin-center lg:origin-left"
-                >
-                  {[
-                    { value: "3+", label: "Years Exp" },
-                    { value: "20+", label: "Projects" },
-                    { value: "15+", label: "Technologies" },
-                  ].map((stat, i) => (
-                    <div key={stat.label} className="flex items-center">
-                      <div className="group flex flex-col items-center lg:items-start px-5 first:pl-0 cursor-default">
-                        <span className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-400 group-hover:to-violet-400">
-                          {stat.value}
-                        </span>
-                        <span className="mt-0.5 text-[11px] font-medium uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                          {stat.label}
-                        </span>
-                      </div>
-                      {i < 2 && (
-                        <div className="h-8 w-px bg-gradient-to-b from-transparent via-slate-300 to-transparent dark:via-slate-600" />
-                      )}
-                    </div>
-                  ))}
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.85 }}
-                  className="mt-4 md:mt-8 flex items-center justify-center lg:justify-start gap-6 pb-8 md:pb-0"
-                >
-                  {[
-                    { name: "GitHub", href: socialLinks.github, icon: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.34 1.544 2.906 1.186.092-.923.35-1.545.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.918.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.42 22 12c0-5.523-4.477-10-10-10z" },
-                    { name: "LinkedIn", href: socialLinks.linkedin, icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" },
-                    { name: "X (Twitter)", href: socialLinks.twitter, icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
-                    { name: "Instagram", href: socialLinks.instagram, icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
-                    { name: "Upwork", href: socialLinks.upwork, icon: "M18.561 13.158c-1.102 0-2.135-.467-3.062-1.226l-.505-.411-.849 3.011c-1.076 3.738-4.495 6.353-8.349 6.353C2.565 20.885 0 18.322 0 15.105V5h2.89v10.105c0 1.621 1.341 2.947 2.906 2.947 1.637 0 3.031-1.332 3.19-2.924L10.37 5h2.906v4.619c0 1.67-.074 2.981-.221 4.148.775.845 1.666 1.405 2.651 1.57l1.092 3.842h2.909l-.865-3.045c1.476-.411 2.531-1.744 2.531-3.309 0-1.89-1.579-3.41-3.524-3.41-1.523 0-2.825 1.01-3.292 2.374-.183-.345-.37-.732-.55-1.169h-2.945c1.393 3.652 2.106 5.86 2.106 5.86l.668.536c.945.745 1.956 1.144 2.915 1.144 1.142 0 2.05-.733 2.05-1.634 0-.829-.769-1.527-1.844-1.527v-2.839c2.613.001 4.733 1.961 4.733 4.366s-2.12 4.353-4.733 4.353z" },
-                  ].map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 text-slate-400 transition-colors hover:text-blue-400"
-                      title={social.name}
-                    >
-                      <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d={social.icon} />
-                      </svg>
-                      <span className="sr-only">{social.name}</span>
-                    </a>
-                  ))}
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.68 }}
+                className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
+              >
+                <MagneticButton>
                   <a
-                    href={`mailto:${socialLinks.email}`}
-                    className="p-2 text-slate-400 transition-colors hover:text-blue-400"
-                    title="Email"
+                    href="#projects"
+                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#101E33] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-[#F8FAFC] transition-colors hover:bg-[#1B3358] sm:w-auto dark:bg-[#F3F6FA] dark:text-[#0A1930] dark:hover:bg-white"
                   >
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    See the Work
+                    <svg
+                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
-                    <span className="sr-only">Email</span>
                   </a>
-                </motion.div>
+                </MagneticButton>
+                <MagneticButton>
+                  <a
+                    href="#contact"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#101E33]/25 bg-transparent px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-[#101E33] transition-colors hover:border-[#E1552A]/60 hover:text-[#E1552A] sm:w-auto dark:border-[#9FB4CC]/25 dark:text-[#F3F6FA] dark:hover:border-[#FF7A52]/60 dark:hover:text-[#FF7A52]"
+                  >
+                    Let&apos;s Talk
+                  </a>
+                </MagneticButton>
+              </motion.div>
+
+              {/* Social ports */}
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.82 }}
+                className="mt-10 flex items-center gap-0.5 rounded-lg border border-[#33455C]/15 p-1 dark:border-[#9FB4CC]/15"
+              >
+                {[
+                  { name: "GitHub", href: socialLinks.github, icon: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.34 1.544 2.906 1.186.092-.923.35-1.545.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.918.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.42 22 12c0-5.523-4.477-10-10-10z" },
+                  { name: "LinkedIn", href: socialLinks.linkedin, icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" },
+                  { name: "X (Twitter)", href: socialLinks.twitter, icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+                  { name: "Instagram", href: socialLinks.instagram, icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
+                  { name: "Upwork", href: socialLinks.upwork, icon: "M18.561 13.158c-1.102 0-2.135-.467-3.062-1.226l-.505-.411-.849 3.011c-1.076 3.738-4.495 6.353-8.349 6.353C2.565 20.885 0 18.322 0 15.105V5h2.89v10.105c0 1.621 1.341 2.947 2.906 2.947 1.637 0 3.031-1.332 3.19-2.924L10.37 5h2.906v4.619c0 1.67-.074 2.981-.221 4.148.775.845 1.666 1.405 2.651 1.57l1.092 3.842h2.909l-.865-3.045c1.476-.411 2.531-1.744 2.531-3.309 0-1.89-1.579-3.41-3.524-3.41-1.523 0-2.825 1.01-3.292 2.374-.183-.345-.37-.732-.55-1.169h-2.945c1.393 3.652 2.106 5.86 2.106 5.86l.668.536c.945.745 1.956 1.144 2.915 1.144 1.142 0 2.05-.733 2.05-1.634 0-.829-.769-1.527-1.844-1.527v-2.839c2.613.001 4.733 1.961 4.733 4.366s-2.12 4.353-4.733 4.353z" },
+                ].map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={social.name}
+                    className="group flex h-10 w-10 items-center justify-center rounded-md text-[#33455C]/70 transition-colors hover:bg-[#101E33]/5 hover:text-[#E1552A] dark:text-[#9FB4CC]/70 dark:hover:bg-[#7DD3FC]/10 dark:hover:text-[#FF7A52]"
+                  >
+                    <svg className="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d={social.icon} />
+                    </svg>
+                    <span className="sr-only">{social.name}</span>
+                  </a>
+                ))}
+                <span className="mx-1 h-5 w-px bg-[#33455C]/15 dark:bg-[#9FB4CC]/15" />
+                <a
+                  href={socialLinks.email}
+                  title="Email"
+                  className="flex h-10 w-10 items-center justify-center rounded-md text-[#33455C]/70 transition-colors hover:bg-[#101E33]/5 hover:text-[#E1552A] dark:text-[#9FB4CC]/70 dark:hover:bg-[#7DD3FC]/10 dark:hover:text-[#FF7A52]"
+                >
+                  <svg className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className="sr-only">Email</span>
+                </a>
+              </motion.div>
             </motion.div>
-          </div>
 
-          {/* Right Column: Portrait — absolutely pinned to bottom of hero */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            className="absolute right-0 top-0 bottom-0 w-[52%] z-10 hidden lg:block"
-          >
-            {/* Image fills full section height, feet touch the bottom */}
-            <div className="relative w-full h-full overflow-visible">
-              {/* Radial glow behind face — white in dark mode, blue in light mode */}
-              {/* Dark mode: white glow */}
-              <div
-                className="hidden dark:block"
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "45%",
-                  transform: "translate(-50%, -50%)",
-                  width: "65%",
-                  aspectRatio: "1",
-                  borderRadius: "50%",
-                  background: "radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 40%, transparent 70%)",
-                  filter: "blur(36px)",
-                  zIndex: 0,
-                  pointerEvents: "none",
-                }}
-              />
-              {/* Light mode: blue glow */}
-              <div
-                className="block dark:hidden"
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "45%",
-                  transform: "translate(-50%, -50%)",
-                  width: "65%",
-                  aspectRatio: "1",
-                  borderRadius: "50%",
-                  background: "radial-gradient(circle, rgba(59,130,246,0.5) 0%, rgba(99,102,241,0.35) 40%, transparent 70%)",
-                  filter: "blur(36px)",
-                  zIndex: 0,
-                  pointerEvents: "none",
-                }}
-              />
-                    <Image
-                      src="/projects/transparent.png"
-                      alt="Uzair Ahmad"
-                      fill
-                      className="object-contain object-bottom hover:scale-[1.02] transition-all duration-500 select-none drop-shadow-[0_30px_60px_rgba(59,130,246,0.15)] dark:drop-shadow-[0_30px_60px_rgba(99,102,241,0.2)]"
-                      style={{ zIndex: 1 }}
-                      sizes="52vw"
-                      priority
-                    />
-            </div>
-
-
-          </motion.div>
-
-          {/* Background Ambient Glow */}
-          <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-            <div className="h-[40rem] w-[40rem] rounded-full bg-blue-500/10 blur-[100px]" />
-          </div>
-
-          {/* Bottom smoke / fade-out glow */}
-          <div
-            className="pointer-events-none absolute bottom-0 left-0 right-0 z-20"
-            style={{
-              height: "160px",
-              background: "linear-gradient(to bottom, transparent 0%, var(--hero-smoke-color) 100%)",
-            }}
-          />
-          {/* Light-mode: white smoke. Dark-mode: dark smoke */}
-          <style>{`
-            :root { --hero-smoke-color: rgba(248,250,252,1); }
-            .dark { --hero-smoke-color: rgba(3,7,18,1); }
-          `}</style>
-
-          {/* Horizontal radial glow band at bottom */}
-          <div
-            className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 z-10"
-            style={{
-              width: "80%",
-              height: "2px",
-              background: "radial-gradient(ellipse 60% 100% at 50% 100%, rgba(99,102,241,0.55) 0%, rgba(59,130,246,0.3) 40%, transparent 70%)",
-              filter: "blur(1px)",
-            }}
-          />
-          <div
-            className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 z-10"
-            style={{
-              width: "60%",
-              height: "80px",
-              background: "radial-gradient(ellipse 100% 100% at 50% 100%, rgba(99,102,241,0.18) 0%, rgba(59,130,246,0.12) 50%, transparent 100%)",
-              filter: "blur(8px)",
-            }}
-          />
-
-          <div className="absolute bottom-16 right-16 z-30 hidden lg:block hover:scale-105 transition-transform duration-300">
-            <CircularStamp text="UZAIR AHMAD • FULL STACK ENGINEER • " />
+            {/* System schematic — the hero's signature graphic */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+              className="w-full max-w-md lg:w-[42%] lg:max-w-none"
+            >
+              <SystemSchematic className="h-auto w-full" />
+            </motion.div>
           </div>
         </section>
 
