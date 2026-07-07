@@ -63,7 +63,8 @@ export const projects = [
       badge: "bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-500/20",
       dot: "bg-blue-500",
       line: "bg-blue-500/50",
-      text: "text-blue-600 dark:text-blue-400"
+      text: "text-blue-600 dark:text-blue-400",
+      hoverText: "hover:text-blue-600 dark:hover:text-blue-400"
     }
   },
   {
@@ -84,7 +85,8 @@ export const projects = [
       badge: "bg-orange-50 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-500/20",
       dot: "bg-orange-500",
       line: "bg-orange-500/50",
-      text: "text-orange-600 dark:text-orange-400"
+      text: "text-orange-600 dark:text-orange-400",
+      hoverText: "hover:text-orange-600 dark:hover:text-orange-400"
     }
   },
   {
@@ -105,7 +107,8 @@ export const projects = [
       badge: "bg-purple-50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-500/20",
       dot: "bg-purple-500",
       line: "bg-purple-500/50",
-      text: "text-purple-600 dark:text-purple-400"
+      text: "text-purple-600 dark:text-purple-400",
+      hoverText: "hover:text-purple-600 dark:hover:text-purple-400"
     }
   },
   {
@@ -126,7 +129,8 @@ export const projects = [
       badge: "bg-sky-50 dark:bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-500/20",
       dot: "bg-sky-500",
       line: "bg-sky-500/50",
-      text: "text-sky-600 dark:text-sky-400"
+      text: "text-sky-600 dark:text-sky-400",
+      hoverText: "hover:text-sky-600 dark:hover:text-sky-400"
     }
   },
   {
@@ -147,7 +151,8 @@ export const projects = [
       badge: "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/20",
       dot: "bg-emerald-500",
       line: "bg-emerald-500/50",
-      text: "text-emerald-600 dark:text-emerald-400"
+      text: "text-emerald-600 dark:text-emerald-400",
+      hoverText: "hover:text-emerald-600 dark:hover:text-emerald-400"
     }
   },
   {
@@ -168,7 +173,8 @@ export const projects = [
       badge: "bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-300 border-red-200 dark:border-red-500/20",
       dot: "bg-red-500",
       line: "bg-red-500/50",
-      text: "text-red-600 dark:text-red-400"
+      text: "text-red-600 dark:text-red-400",
+      hoverText: "hover:text-red-600 dark:hover:text-red-400"
     }
   },
   {
@@ -189,7 +195,8 @@ export const projects = [
       badge: "bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-200 dark:border-violet-500/20",
       dot: "bg-violet-500",
       line: "bg-violet-500/50",
-      text: "text-violet-600 dark:text-violet-400"
+      text: "text-violet-600 dark:text-violet-400",
+      hoverText: "hover:text-violet-600 dark:hover:text-violet-400"
     }
   },
   {
@@ -210,7 +217,8 @@ export const projects = [
       badge: "bg-cyan-50 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/20",
       dot: "bg-cyan-500",
       line: "bg-cyan-500/50",
-      text: "text-cyan-600 dark:text-cyan-400"
+      text: "text-cyan-600 dark:text-cyan-400",
+      hoverText: "hover:text-cyan-600 dark:hover:text-cyan-400"
     }
   },
 ] as const;

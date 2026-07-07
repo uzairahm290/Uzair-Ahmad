@@ -2,23 +2,29 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { AnimatedSection } from "@/components/animated-section";
-import { MarqueeContact } from "@/components/marquee-contact";
-import { SkillsSlider } from "@/components/skills-slider";
 import { projects, skillsSlider, socialLinks } from "@/lib/portfolio-data";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TypewriterText } from "@/components/typewriter-text";
 import { ScrollProgress } from "@/components/scroll-progress";
-import { JourneyTimeline } from "@/components/journey-timeline";
-import { SkillsConstellation } from "@/components/skills-constellation";
-import { ServicesScroll } from "@/components/services-scroll";
 import { MagneticButton } from "@/components/magnetic-button";
-import { GithubActivity } from "@/components/github-activity";
-import { HeroBlueprintField, SystemSchematic } from "@/components/hero-blueprint";
+import { CartographyField, RouteMap } from "@/components/hero-cartography";
+import { VoyageRoute } from "@/components/voyage-route";
+
+// Below-the-fold sections — code-split so they don't bloat the initial bundle.
+const SkillsConstellation = dynamic(() => import("@/components/skills-constellation").then((m) => m.SkillsConstellation));
+const SkillsSlider = dynamic(() => import("@/components/skills-slider").then((m) => m.SkillsSlider));
+const GithubActivity = dynamic(() => import("@/components/github-activity").then((m) => m.GithubActivity));
+const JourneyTimeline = dynamic(() => import("@/components/journey-timeline").then((m) => m.JourneyTimeline));
+const ServicesScroll = dynamic(() => import("@/components/services-scroll").then((m) => m.ServicesScroll));
+const MarqueeContact = dynamic(() => import("@/components/marquee-contact").then((m) => m.MarqueeContact));
 
 const navItems = ["Projects", "Skills", "Journey", "Services", "Contact"];
+const featuredProjects = projects.slice(0, 4);
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,6 +43,8 @@ export default function Home() {
     <div className="relative overflow-clip">
       <div className="gradient-orb pointer-events-none fixed -left-24 top-0 h-[420px] w-[420px] blur-2xl" />
       <div className="pointer-events-none fixed -right-24 top-52 h-[340px] w-[340px] rounded-full bg-violet-500/10 dark:bg-violet-500/10 blur-3xl opacity-50 dark:opacity-100" />
+
+      <VoyageRoute />
 
       <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:top-6">
         <motion.nav 
@@ -138,7 +146,7 @@ export default function Home() {
 
       <main className="relative z-10 pt-20 md:pt-24">
         <section className="relative min-h-screen overflow-hidden">
-          <HeroBlueprintField />
+          <CartographyField />
 
           <div className="section-container relative z-20 flex min-h-screen flex-col items-center justify-center gap-14 py-28 lg:flex-row lg:justify-between lg:gap-10 lg:py-20">
 
@@ -153,21 +161,21 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-[#33455C]/70 dark:text-[#9FB4CC]/70"
+                className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400"
               >
-                <span className="h-px w-8 bg-[#33455C]/40 dark:bg-[#9FB4CC]/40" />
-                Full Stack Engineer &mdash; Lahore, PK
+                <span className="h-px w-8 bg-slate-300 dark:bg-slate-600" />
+                Full Stack Engineer &middot; 31.52&deg;N 74.36&deg;E
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 26 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
-                className="font-[family-name:var(--font-fraunces)] text-[16vw] font-semibold leading-[0.9] tracking-tight text-[#101E33] sm:text-7xl md:text-[6rem] lg:text-[5.25rem] xl:text-[6rem] dark:text-[#F3F6FA]"
+                className="font-[family-name:var(--font-fraunces)] text-[16vw] font-semibold leading-[0.9] tracking-tight text-slate-900 sm:text-7xl md:text-[6rem] lg:text-[5.25rem] xl:text-[6rem] dark:text-white"
               >
                 Uzair
                 <br />
-                <span className="italic text-[#101E33]/65 dark:text-[#F3F6FA]/65">Ahmad</span>
+                <span className="italic text-blue-600 dark:text-blue-400">Ahmad</span>
               </motion.h1>
 
               <motion.div
@@ -176,7 +184,7 @@ export default function Home() {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
               >
                 <TypewriterText
-                  className="mt-6 flex min-h-[56px] max-w-md items-center justify-center text-base leading-relaxed text-[#46566B] md:text-lg lg:justify-start dark:text-[#9FB4CC]"
+                  className="mt-6 flex min-h-[56px] max-w-md items-center justify-center text-base leading-relaxed text-slate-600 md:text-lg lg:justify-start dark:text-slate-300"
                   text={[
                     "A Full Stack Engineer crafting scalable AI-powered products",
                     "Building immersive web experiences with modern technologies",
@@ -199,9 +207,9 @@ export default function Home() {
                   { k: "STACK", v: "15 TOOLS" },
                 ].map((row) => (
                   <div key={row.k} className="flex items-baseline gap-2">
-                    <dt className="shrink-0 tracking-[0.15em] text-[#101E33]/70 dark:text-[#E7EEF6]/70">{row.k}</dt>
-                    <span className="h-0 flex-1 border-b border-dotted border-[#33455C]/30 dark:border-[#9FB4CC]/30" />
-                    <dd className="shrink-0 font-semibold tracking-wide text-[#101E33] dark:text-[#F3F6FA]">{row.v}</dd>
+                    <dt className="shrink-0 tracking-[0.15em] text-slate-500 dark:text-slate-400">{row.k}</dt>
+                    <span className="h-0 flex-1 border-b border-dotted border-slate-300 dark:border-slate-600" />
+                    <dd className="shrink-0 font-semibold tracking-wide text-slate-900 dark:text-white">{row.v}</dd>
                   </div>
                 ))}
               </motion.dl>
@@ -216,7 +224,7 @@ export default function Home() {
                 <MagneticButton>
                   <a
                     href="#projects"
-                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#101E33] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-[#F8FAFC] transition-colors hover:bg-[#1B3358] sm:w-auto dark:bg-[#F3F6FA] dark:text-[#0A1930] dark:hover:bg-white"
+                    className="group relative inline-flex w-full items-center justify-center gap-2 rounded-md bg-slate-900 px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-slate-800 sm:w-auto dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
                   >
                     See the Work
                     <svg
@@ -233,7 +241,7 @@ export default function Home() {
                 <MagneticButton>
                   <a
                     href="#contact"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#101E33]/25 bg-transparent px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-[#101E33] transition-colors hover:border-[#E1552A]/60 hover:text-[#E1552A] sm:w-auto dark:border-[#9FB4CC]/25 dark:text-[#F3F6FA] dark:hover:border-[#FF7A52]/60 dark:hover:text-[#FF7A52]"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-slate-300 bg-transparent px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-slate-700 transition-colors hover:border-blue-500 hover:text-blue-600 sm:w-auto dark:border-slate-700 dark:text-slate-200 dark:hover:border-blue-400 dark:hover:text-blue-400"
                   >
                     Let&apos;s Talk
                   </a>
@@ -245,7 +253,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.82 }}
-                className="mt-10 flex items-center gap-0.5 rounded-lg border border-[#33455C]/15 p-1 dark:border-[#9FB4CC]/15"
+                className="mt-10 flex items-center gap-0.5 rounded-lg border border-slate-200 p-1 dark:border-slate-700/50"
               >
                 {[
                   { name: "GitHub", href: socialLinks.github, icon: "M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.34 1.544 2.906 1.186.092-.923.35-1.545.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.918.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.42 22 12c0-5.523-4.477-10-10-10z" },
@@ -260,7 +268,7 @@ export default function Home() {
                     target="_blank"
                     rel="noreferrer"
                     title={social.name}
-                    className="group flex h-10 w-10 items-center justify-center rounded-md text-[#33455C]/70 transition-colors hover:bg-[#101E33]/5 hover:text-[#E1552A] dark:text-[#9FB4CC]/70 dark:hover:bg-[#7DD3FC]/10 dark:hover:text-[#FF7A52]"
+                    className="group flex h-10 w-10 items-center justify-center rounded-md text-slate-500 transition-colors hover:bg-slate-100 hover:text-blue-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-blue-400"
                   >
                     <svg className="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 24 24">
                       <path d={social.icon} />
@@ -268,11 +276,11 @@ export default function Home() {
                     <span className="sr-only">{social.name}</span>
                   </a>
                 ))}
-                <span className="mx-1 h-5 w-px bg-[#33455C]/15 dark:bg-[#9FB4CC]/15" />
+                <span className="mx-1 h-5 w-px bg-slate-200 dark:bg-slate-700/50" />
                 <a
                   href={socialLinks.email}
                   title="Email"
-                  className="flex h-10 w-10 items-center justify-center rounded-md text-[#33455C]/70 transition-colors hover:bg-[#101E33]/5 hover:text-[#E1552A] dark:text-[#9FB4CC]/70 dark:hover:bg-[#7DD3FC]/10 dark:hover:text-[#FF7A52]"
+                  className="flex h-10 w-10 items-center justify-center rounded-md text-slate-500 transition-colors hover:bg-slate-100 hover:text-blue-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-blue-400"
                 >
                   <svg className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -282,19 +290,19 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* System schematic — the hero's signature graphic */}
+            {/* Route map — the hero's signature graphic */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
               className="w-full max-w-md lg:w-[42%] lg:max-w-none"
             >
-              <SystemSchematic className="h-auto w-full" />
+              <RouteMap className="h-auto w-full" />
             </motion.div>
           </div>
         </section>
 
-        <AnimatedSection className="section-container mt-32 relative">
+        <AnimatedSection id="about" className="section-container mt-32 relative scroll-mt-24">
           {/* Header Area */}
           <div className="flex flex-col items-center justify-center text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
@@ -408,7 +416,7 @@ export default function Home() {
               <div className="h-[2px] w-24 mx-auto mt-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent blur-[1px] opacity-70" />
             </h2>
             <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-              A collection of {projects.length} selected builds spanning full stack development, AI integration, and creative design.
+              {featuredProjects.length} selected builds from a {projects.length}-project archive spanning full stack development, AI integration, and creative design.
             </p>
           </div>
 
@@ -416,20 +424,20 @@ export default function Home() {
           <div className="relative mt-12 lg:pl-0">
             {/* Background Timeline track line — desktop only */}
             <div className="absolute hidden lg:block left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-slate-200 dark:bg-slate-800" />
-            
+
             {/* Active/Scrolling Timeline track line — desktop only */}
-            <motion.div 
+            <motion.div
               style={{ scaleY: timelineScaleY, transformOrigin: "top" }}
               className="absolute hidden lg:block left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-gradient-to-b from-orange-500 via-purple-500 via-sky-500 via-emerald-500 via-red-500 to-cyan-500"
             />
 
             {/* Project rows */}
             <div className="space-y-10 lg:space-y-36">
-              {projects.map((project, idx) => {
+              {featuredProjects.map((project, idx) => {
                 const isEven = idx % 2 === 1;
                 
                 return (
-                  <div key={project.name} className="relative group/row grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center">
+                  <div key={project.name} className="relative group/row grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-start">
                     
                     {/* Horizontal Connector Line (desktop only) */}
                     {!isEven && (
@@ -530,12 +538,16 @@ export default function Home() {
                       
                       {/* Interactive Title */}
                       <h3 className="text-4xl md:text-5xl lg:text-[4rem] font-black text-slate-300 dark:text-slate-800 tracking-tighter leading-none transition-colors duration-700 group-hover/row:text-slate-900 dark:group-hover/row:text-white cursor-default flex flex-wrap">
-                        {project.name.split("").map((char, i) => (
-                          <span 
-                            key={i} 
-                            className={`inline-block transition-transform duration-200 hover:-translate-y-2 hover:${project.color.text}`}
-                          >
-                            {char === " " ? "\u00A0" : char}
+                        {project.name.split(" ").map((word, wi) => (
+                          <span key={wi} className="inline-flex whitespace-nowrap mr-[0.22em]">
+                            {word.split("").map((char, ci) => (
+                              <span
+                                key={ci}
+                                className={`inline-block transition-transform duration-200 hover:-translate-y-2 ${project.color.hoverText}`}
+                              >
+                                {char}
+                              </span>
+                            ))}
                           </span>
                         ))}
                       </h3>
@@ -544,45 +556,40 @@ export default function Home() {
                         {project.summary}
                       </p>
                       
-                      {/* Hidden by default, reveals on hover */}
-                      <div className="grid grid-rows-[0fr] opacity-0 group-hover/row:grid-rows-[1fr] group-hover/row:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <div className="overflow-hidden">
-                          <div className="flex flex-wrap gap-2 mb-8 pt-8">
-                            {project.tech.map((t) => (
-                              <span 
-                                key={t} 
-                                className="rounded-full bg-slate-100 dark:bg-slate-800/80 px-3 py-1 text-xs font-bold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 transition-colors hover:text-slate-900 dark:hover:text-white"
-                              >
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-                          
-                          <div className="flex items-center gap-8 text-sm font-bold uppercase tracking-widest pb-2">
-                            <a
-                              href={project.demo}
-                              target="_blank"
-                              rel="noreferrer"
-                              className={`inline-flex items-center gap-2 transition-colors ${project.color.text} hover:opacity-80 group/link`}
-                            >
-                              Live Demo 
-                              <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                              </svg>
-                            </a>
-                            <a
-                              href={project.github}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors group/link"
-                            >
-                              GitHub 
-                              <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                              </svg>
-                            </a>
-                          </div>
-                        </div>
+                      <div className="mt-8 flex flex-wrap gap-2">
+                        {project.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-full bg-slate-100 dark:bg-slate-800/80 px-3 py-1 text-xs font-bold text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700 transition-colors hover:text-slate-900 dark:hover:text-white"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-8 flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={`inline-flex items-center gap-2 transition-colors ${project.color.text} hover:opacity-80 group/link`}
+                        >
+                          Live Demo
+                          <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors group/link"
+                        >
+                          GitHub
+                          <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                             <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
                       </div>
                     </motion.div>
 
@@ -590,6 +597,22 @@ export default function Home() {
                 );
               })}
             </div>
+          </div>
+
+          {/* View All CTA */}
+          <div className="mt-20 flex flex-col items-center justify-center gap-2 text-center lg:mt-28">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+              {projects.length - featuredProjects.length} more builds in the archive
+            </p>
+            <Link
+              href="/projects"
+              className="group inline-flex items-center gap-2 text-lg font-bold text-slate-900 transition-colors hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
+            >
+              View All Projects
+              <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
           </div>
         </section>
         <AnimatedSection id="skills" className="section-container mt-40">

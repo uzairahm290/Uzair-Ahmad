@@ -70,7 +70,7 @@ export function CustomCursor() {
       decay: Math.random() * 0.015 + 0.012, // Random decay rate
     });
 
-    if (particles.current.length > 120) {
+    if (particles.current.length > 60) {
       particles.current.shift();
     }
   };
@@ -89,8 +89,8 @@ export function CustomCursor() {
         const dy = currentY - lastMousePos.current.y;
         const distance = Math.hypot(dx, dy);
         
-        // Spawn a particle every 7px of movement (max 8 per mouse move to protect performance)
-        const steps = Math.min(Math.floor(distance / 7), 8);
+        // Spawn a particle every 14px of movement (max 4 per mouse move to protect performance)
+        const steps = Math.min(Math.floor(distance / 14), 4);
         for (let i = 0; i <= steps; i++) {
           const t = steps === 0 ? 1 : i / steps;
           const x = lastMousePos.current.x + dx * t;
@@ -154,6 +154,11 @@ export function CustomCursor() {
     window.addEventListener("resize", resizeCanvas);
 
     const animate = () => {
+      if (document.hidden) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.current.forEach((p) => {

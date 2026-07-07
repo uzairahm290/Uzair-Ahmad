@@ -19,25 +19,26 @@ export function Preloader() {
       return;
     }
 
-    // Animate the counter
+    // Animate the counter — a brief branded flash rather than a real loading
+    // wait (the page is already ready; this used to hold for ~1.9s of dead time).
     let currentProgress = 0;
     const interval = setInterval(() => {
       // Randomly jump progress to make it look like a real network load
-      currentProgress += Math.floor(Math.random() * 8) + 1;
-      
+      currentProgress += Math.floor(Math.random() * 10) + 5;
+
       if (currentProgress >= 100) {
         currentProgress = 100;
         clearInterval(interval);
-        
+
         // Brief pause at 100% before animating out
         setTimeout(() => {
           setIsLoading(false);
           sessionStorage.setItem("hasSeenPreloader", "true");
-        }, 400);
+        }, 200);
       }
-      
+
       setProgress(currentProgress);
-    }, 45); // Roughly 1.5 seconds to load
+    }, 40); // Roughly 450ms to load
 
     return () => clearInterval(interval);
   }, []);

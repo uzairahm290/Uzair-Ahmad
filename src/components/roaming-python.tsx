@@ -93,9 +93,14 @@ export function RoamingPython() {
 
     let animationId: number;
 
+    // Sized to the viewport, not the document — the snake's segments still
+    // live in document-space (so it can roam the whole page), but at draw
+    // time we translate by the current scroll offset. A full-document canvas
+    // here previously meant clearing/redrawing tens of thousands of extra
+    // pixels every frame, and its size could only ever grow (see git history).
     const resizeCanvas = () => {
-      const width = document.documentElement.scrollWidth;
-      const height = document.documentElement.scrollHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
       canvas.style.width = `${width}px`;
@@ -106,6 +111,11 @@ export function RoamingPython() {
     window.addEventListener("resize", resizeCanvas);
 
     const updateAndDraw = () => {
+      if (document.hidden) {
+        animationId = requestAnimationFrame(updateAndDraw);
+        return;
+      }
+
       const now = Date.now();
       const s = state.current;
       const isIdle = now - s.lastActiveTime > 4000;
@@ -121,6 +131,11 @@ export function RoamingPython() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (s.segments.length > 0 && !s.isSleeping) {
+        // Segments are tracked in document-space; shift by the scroll offset
+        // so they land in the right spot on this viewport-sized canvas.
+        ctx.save();
+        ctx.translate(-window.scrollX, -window.scrollY);
+
         // 1. Mouse avoidance & Hiding
         const head = s.segments[0];
         const dxMouse = head.x - s.mousePos.x;
@@ -367,6 +382,8 @@ export function RoamingPython() {
         ctx.arc(rightEyeX + Math.cos(pupilOffsetAngle) * pupilDist, rightEyeY + Math.sin(pupilOffsetAngle) * pupilDist, pupilRadius, 0, Math.PI * 2);
         ctx.fillStyle = pupilColor;
         ctx.fill();
+
+        ctx.restore();
       }
 
       animationId = requestAnimationFrame(updateAndDraw);
@@ -385,7 +402,7 @@ export function RoamingPython() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute top-0 left-0 z-[9997] hidden md:block"
+      className="pointer-events-none fixed top-0 left-0 z-[9997] hidden md:block"
     />
   );
 }
